@@ -44,3 +44,73 @@ body {
     filter: invert(100%);
 
   }
+
+  .abilities{
+    position:relative;
+  }
+
+  .abilityButtons {
+    display: flex;
+    justify-content: space-around;
+    margin:20%;
+    margin-top:3%;
+    margin-bottom:3%;
+    
+  }
+  
+  .abilityButton {
+    height:10vw;
+    width:10vw;
+    margin:10px;
+  }
+
+  .abilityIcon{
+    filter: invert(100%);
+    width:100%;
+    padding:10%;
+  }
+
+  .abilityVideo {
+    display:flex;
+    justify-content:space-around;
+    background-color: #0e1921;
+  
+  }
+
+  .abilityVid{
+    width:80vw;
+    margin-bottom:3%;
+    margin-top:2%; 
+
+    box-shadow: rgba(	255, 70, 85, 0.4) 5px 5px, rgba(	255, 70, 85, 0.3) 10px 10px, rgba(	255, 70, 85, 0.2) 15px 15px, rgba(	255, 70, 85, 0.1) 20px 20px
+  }
+
+
+.abilityDescriptionContainer {
+    background-color: #0e1921;
+    padding: 1vw;
+}
+
+.abilityBox{
+    margin: 5% 10%;
+    border: solid 1px #ff4655;
+    position: relative;
+}
+
+#abilityName {
+    text-align: center;
+    width: 8rem;
+    background-color: #0e1921;
+    color: #fff;
+    position: absolute;
+    top: -0.8rem;
+    right: 50%;
+    transform: translate(-60%, 0%);
+}
+
+#abilityDescription {
+    padding: 10% 5%;
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+}
