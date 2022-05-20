@@ -15,6 +15,7 @@ fetchAgentsJSON().then( agents => {
     agentDescription(agents[4])
     loadAbilityIcons(agents[4])
     abilityDescription(agents[4])
+    agentBackStory(agents[4])
 });
 
 function agentDescription(agent){
