@@ -36,4 +36,11 @@ body {
       transform: translate(-50%, 0%);
   }
 
-  
+  .agentName{
+    margin-left:10%
+  }
+
+  .roleIcon {
+    filter: invert(100%);
+
+  }
