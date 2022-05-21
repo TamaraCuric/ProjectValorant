@@ -12,20 +12,19 @@ fetchAgentsJSON().then( agents => {
         _img.src = this.src;
     }
     newImg.src = imageSrc;
-    // agentDescription(agents[4])
+    agentDescription(agents[4])
     loadAbilityIcons(agents[4])
     abilityDescription(agents[4])
-    // agentBackStory(agents[4])
+    agentBackstory(agents[4])
 });
 
 function agentDescription(agent){
     var agentName = document.getElementById('agentName');
     var text = document.createTextNode(agent.displayName);
     agentName.appendChild(text);
-    // roleIcon, agentRole
     var agentRole = document.getElementById('agentRole');
-    var text = document.createTextNode(agent.role.displayName);
-    agentName.appendChild(text);
+    var text = document.createTextNode("Class - " + agent.role.displayName);
+    agentRole.appendChild(text);
 
     let imageSrc = agent.role.displayIcon
     let _img = document.getElementById('roleIcon');
@@ -57,4 +56,11 @@ function abilityDescription(agent){
     var abilityNameElement = document.getElementById("abilityName");
     var titleName = document.createTextNode(agent.abilities[0].displayName);
     abilityNameElement.appendChild(titleName);
+}
+
+
+function agentBackstory(agent){
+    var agentBackstory = document.getElementById("agentBackstory");
+    var text = document.createTextNode(agent.description);
+    agentBackstory.appendChild(text);
 }

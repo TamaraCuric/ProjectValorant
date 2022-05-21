@@ -17,126 +17,160 @@ body {
 }
 
 .agentBackSplash {
-    width: 100%;
-    background-image: url('ValBackground.png');
-    position: relative;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 70vh;
-    z-index: 10;
-    margin-bottom:10vh;
-  }
+  width: 100%;
+  background-image: url('ValBackground.png');
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 70vh;
+  z-index: 10;
+  margin-bottom: 10vh;
+}
 
-  #id1 {
-    height:80vh;
-      position:relative;
-      left: 50%;
-      transform: translate(-50%, 0%);
-  }
+#id1 {
+  height: 80vh;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
 
+.abilities {
+  position: relative;
+}
 
-  .abilities{
-    position:relative;
-  }
+.abilityButtons {
+  display: flex;
+  justify-content: space-around;
+  margin: 20%;
+  margin-top: 3%;
+  margin-bottom: 3%;
 
-  .abilityButtons {
-    display: flex;
-    justify-content: space-around;
-    margin:20%;
-    margin-top:3%;
-    margin-bottom:3%;
-    
-  }
-  
-  .abilityButton {
-    height:10vw;
-    width:10vw;
-    margin:10px;
-  }
+}
 
-  .abilityIcon{
-    filter: invert(100%);
-    width:100%;
-    padding:10%;
-  }
+.abilityButton :hover {
+  filter: invert(0%);
+  background-color: #ff4655;
+  transition: all 0.3s ease-out;
+}
 
+.abilityButton {
+  height: 10vw;
+  width: 10vw;
+  max-width: 70px;
+  max-height: 70px;
+  transition: all 0.3s ease-out;
+}
 
+.abilityIcon {
+  filter: invert(100%);
+  width: 100%;
+  padding: 10%;
+}
 
+.abilityVideo {
+  display: flex;
+  justify-content: space-around;
+  background-color: #0e1921;
+}
 
-  /* .agentName{
-    margin-left:10%
-  }
-
-  .roleIcon {
-    filter: invert(100%);
-
-  }
-
-  .abilityVideo {
-    display:flex;
-    justify-content:space-around;
-    background-color: #0e1921;
-  
-  }
-
-  .abilityVid{
-    width:80vw;
-    margin-bottom:3%;
-    margin-top:2%; 
-
-    box-shadow: rgba(	255, 70, 85, 0.4) 5px 5px, rgba(	255, 70, 85, 0.3) 10px 10px, rgba(	255, 70, 85, 0.2) 15px 15px, rgba(	255, 70, 85, 0.1) 20px 20px
-  }
+.abilityVid {
+  margin-bottom: 8%;
+  margin-top: 2%;
+  box-shadow: rgba(255, 70, 85, 0.4) 5px 5px, rgba(255, 70, 85, 0.3) 10px 10px;
+  /*, rgba(255, 70, 85, 0.2) 15px 15px, rgba(255, 70, 85, 0.1) 20px 20px
+  */
+  width: 80%;
+  height: auto;
+}
 
 
 .abilityDescriptionContainer {
-    background-color: #0e1921;
-    padding: 1vw;
+  background-color: #0e1921;
+  padding: 1vw;
 }
 
-.abilityBox{
-    margin: 5% 10%;
-    border: solid 1px #ff4655;
-    position: relative;
+.abilityBox {
+  border-bottom: solid 1px #ff4655;
+  position: relative;
 }
 
 #abilityName {
-    text-align: center;
-    width: 8rem;
-    background-color: #0e1921;
-    color: #fff;
-    position: absolute;
-    top: -0.8rem;
-    right: 50%;
-    transform: translate(-60%, 0%);
+  text-align: justify;
+  width: 80%;
+  background-color: #0e1921;
+  color: #fff;
+  position: absolute;
+  font-size: 2rem;
+  font-family: 'Valorant', sans-serif;
+  margin-left: 10%;
+  margin-right: 10%;
+
 }
 
 #abilityDescription {
-    padding: 10% 5%;
-    color: #fff;
-    font-size: 1.5rem;
-    text-align: center;
+  padding: 10% 5%;
+  color: #fff;
+  font-size: 1rem;
+  text-align: justify;
+  margin-left: 10%;
+  margin-right: 10%;
+
 }
 
-.agentDescription{
-
-} 
-.agentPicForBackstory{
-  
-}
-  #agentBackstoryPic{
-    height:500px
+@media screen and (min-width:680px) {
+  .abilityButtons {
+    display: flex;
+    justify-content: center;
   }
 
-.agentBackstory{
+  .abilityButton {
+    margin-left: 4%;
+    margin-right: 4%;
+  }
+}
+
+.agentDescription {
+  margin-top:3%;
+  margin-left:10%;
 
 }
-#agentBackstory{
-  
+
+.agentNameTitle {
+  font-size:2rem;
+  font-family: 'Valorant', sans-serif;
 }
 
+.agentRole{
+  display:flex;
+  justify-content: flex-start;
+  margin-top:2%;
+  font-family: 'Valorant', sans-serif;
+  font-size:1rem;
+}
+.roleIcon {
+  filter: invert(100%);
+  height: 2.5rem;
+  width:auto;
+  margin-right:2rem;
+}
 
+#agentBackstoryPic {
+  height: 500px
+}
+
+.agentBackstory {
+  margin-top:5%;
+  margin-bottom:5%;
+}
+
+#agentBackstory {}
+
+
+
+
+/* 
 .dropbtn {
   background-color: #4CAF50;
   color: white;
