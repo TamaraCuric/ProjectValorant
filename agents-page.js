@@ -30,66 +30,50 @@ function updateElementTextValue(elementId, newTextValue){
     agentName.appendChild(text);
 }
 
+function replaceElementTextValue(elementId, newTextValue){
+    let abilityDescriptionElement = document.getElementById(elementId);
+    let text = document.createTextNode(newTextValue);
+    abilityDescriptionElement.innerHTML ='';
+    abilityDescriptionElement.appendChild(text);
+}
 
-
-function agentDescription(agent){
-    updateElementTextValue('agentName', agent.displayName)
-    // let agentName = document.getElementById('agentName');
-    // let text = document.createTextNode(agent.displayName);
-    // agentName.appendChild(text);
-
-    updateElementTextValue('agentRole', "Class - " + agent.role.displayName )
-    // let agentRole = document.getElementById('agentRole');
-    // text = document.createTextNode("Class - " + agent.role.displayName);
-    // agentRole.appendChild(text);
-
-    let imageSrc = agent.role.displayIcon
-    let _img = document.getElementById('roleIcon');
+function updateElementImageSource(elementId, imgSource){
+    let _img = document.getElementById(elementId);
     let newImage = new Image;
     newImage.onload = function() {
         _img.src = this.src;
     }
-    newImage.src = imageSrc;
+    newImage.src = imgSource;    
+}
+
+
+function agentDescription(agent){
+    updateElementTextValue('agentName', agent.displayName)
+    updateElementTextValue('agentRole', "Class - " + agent.role.displayName )
+    updateElementImageSource('roleIcon', agent.role.displayIcon)
 }
 
 function loadAbilityIcons(agent){
     for(i = 0; i < 4; i++){
-        let imageSrc = agent.abilities[i].displayIcon
-        let _img = document.getElementById('ability'+(i+1));
-        let newImage = new Image;
-        newImage.onload = function() {
-            _img.src = this.src;
-        }
-        newImage.src = imageSrc;
+        updateElementImageSource('ability'+(i+1), agent.abilities[i].displayIcon)
     }
 }
 
 function abilityDescription(agent, abilityId){
-    let abilityDescriptionElement = document.getElementById("abilityDescription");
-    let text = document.createTextNode(agent.abilities[abilityId - 1].description);
-    abilityDescriptionElement.innerHTML ='';
-    abilityDescriptionElement.appendChild(text);
-    
-    let abilityNameElement = document.getElementById("abilityName");
-    let titleName = document.createTextNode(agent.abilities[abilityId - 1].displayName);
-    abilityNameElement.innerHTML ='';
-    abilityNameElement.appendChild(titleName);
+    replaceElementTextValue('abilityDescription', agent.abilities[abilityId - 1].description)
+    replaceElementTextValue('abilityName', agent.abilities[abilityId - 1].displayName)
 }
 
 
 function agentBackstory(agent){
-    let agentBackstory = document.getElementById("agentBackstory");
-    let text = document.createTextNode(agent.description);
-    agentBackstory.appendChild(text);
+    updateElementTextValue('agentBackstory', agent.description)
 }
 
 function removeButtonsSelectedClass(){
     let collection = document.getElementsByClassName("abilityIcon");
     for (let i = 0; i < collection.length; i++) {
-        console.log(collection[i].classList.contains("selected"))
         if(collection[i].classList.contains("selected"))
         {
-            console.log('found class')
             collection[i].classList.remove("selected");
         }
     }
@@ -99,15 +83,8 @@ var agent = 'placeholder'
 
 fetchAgentsJSON().then( agents => {
     agent = agents[3];
-     agentSortAbilities(agent)
-    console.log(agent)
-    let imageSrc = agent.fullPortraitV2
-    let _img = document.getElementById('id1');
-    let newImg = new Image;
-    newImg.onload = function() {
-        _img.src = this.src;
-    }
-    newImg.src = imageSrc;
+    agentSortAbilities(agent)
+    updateElementImageSource('id1', agent.fullPortraitV2)
     agentDescription(agent)
     loadAbilityIcons(agent)
     abilityDescription(agent, 1)
