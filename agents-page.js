@@ -5,17 +5,17 @@ async function fetchAgentsJSON(){
 }
 
 fetchAgentsJSON().then( agents => {
-    let imageSrc = agents[4].fullPortraitV2
+    let imageSrc = agents[3].fullPortraitV2
     var _img = document.getElementById('id1');
     var newImg = new Image;
     newImg.onload = function() {
         _img.src = this.src;
     }
     newImg.src = imageSrc;
-    agentDescription(agents[4])
-    loadAbilityIcons(agents[4])
-    abilityDescription(agents[4])
-    agentBackstory(agents[4])
+    agentDescription(agents[3])
+    loadAbilityIcons(agents[3])
+    abilityDescription(agents[3])
+    agentBackstory(agents[3])
 });
 
 function agentDescription(agent){
@@ -64,3 +64,5 @@ function agentBackstory(agent){
     var text = document.createTextNode(agent.description);
     agentBackstory.appendChild(text);
 }
+
+
