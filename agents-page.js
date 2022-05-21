@@ -12,10 +12,10 @@ fetchAgentsJSON().then( agents => {
         _img.src = this.src;
     }
     newImg.src = imageSrc;
-    agentDescription(agents[4])
+    // agentDescription(agents[4])
     loadAbilityIcons(agents[4])
     abilityDescription(agents[4])
-    agentBackStory(agents[4])
+    // agentBackStory(agents[4])
 });
 
 function agentDescription(agent){
