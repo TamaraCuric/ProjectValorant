@@ -29,6 +29,7 @@ body {
     position: fixed;
     background-color: #111;
     width: 100%;
+    height: 3.9rem;
 }
 
 .logo-nav {
@@ -52,17 +53,12 @@ body {
     height: 100%;
   }
 
-#navList a.active {
-    background-color: #e4e6eb;
-    color: black;
-    height: 100%;
-}
-
 ul {
     display: inline-flex;
     list-style-type: none;
     margin: 0;
     padding: 0;
+    -webkit-flex-flow: row wrap;
 }
 .move-left-logo {
     padding-left: 2.5vw;
@@ -72,6 +68,8 @@ ul {
     justify-content: right;
     display: inline-flex;
     margin-left: 10rem;
+    position: fixed; 
+    right: 7vw;
 } 
   .dropbtn:hover, .dropbtn:focus {
     background-color: #3a3b3c;
@@ -109,6 +107,10 @@ ul {
     display:block;
 }
 
+
+    
+
+
 /* Scrollbar on dropdown */
 
     ::-webkit-scrollbar {
@@ -128,5 +130,87 @@ ul {
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
     }
     ::-webkit-scrollbar-thumb:window-inactive {
-        background: rgba(255,0,0,0.4); 
+        background: rgba(255,0,0,0.8); 
     }
+
+    /* Sidebar---------------------------------------- */
+
+  
+.sidebar {
+    height: 100%; 
+    width: 0; 
+    position: relative;
+    float: right;
+    top: 0;
+    left: 0;
+    background-color: black;
+    overflow-x: hidden; 
+    padding-top: 60px; 
+    transition: 0.5s; 
+}
+  
+
+.sidebar a {
+    width:100%;
+    padding: 0.5rem;;
+    float: left;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+} 
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+  
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    left: 25px;
+    font-size: 36px;
+    margin-right: 50px;
+}
+  
+
+.openbtn {
+    font-size: 1.4rem;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 0.8rem;
+    padding-bottom: 1.23rem;
+    padding-right: 1.375rem;
+    padding-left: 1.375rem;
+    border: none;
+}
+  
+.openbtn:hover {
+    background-color: #444;
+    height: 100%;
+    width: 100%;
+}
+ 
+@media only screen and (max-width: 952px) {
+    .logo-nav {
+        width: 2.3rem;
+        margin-top: 15px;
+        margin-left: 5px;
+    }
+    .contact-nav, .home-nav, .agents-nav, .news-nav, .about-nav {
+        display: none;
+    }
+    .openbtn {
+        padding: 0.9rem;
+    }
+};
+
+@media screen and (max-height: 450px) {
+    .sidebar {
+        padding-top: 15px;
+    }
+    .sidebar a {
+        font-size: 18px;
+    }
+}

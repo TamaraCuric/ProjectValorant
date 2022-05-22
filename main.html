@@ -1,57 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <script defer src="main.js"></script>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="http://fonts.cdnfonts.com/css/valorant" rel="stylesheet">
-</head>
-<body>
-    <link href="main.css" rel="stylesheet">
-    
+    <link href="http://fonts.cdnfonts.com/css/valorant" rel="stylesheet" />
+  </head>
+  <body>
+    <link href="main.css" rel="stylesheet" />
+
     <!-- Header----------------------------------------------------- -->
-<div class = "header-container">
-    <nav>
-        <ul onclick ="activeNavElement(event)" id="navList">
-            <div class="move-left-logo">
-                <li><img class ="logo-nav" src = 'valorant_logo-freelogovectors.net_.png'></li>
-            </div>
-            <div class="move-right-navs">
-                <li><a  class="home-nav active" href="#">HOME</a></li>
+    <div class="header-container">
+      <nav>
+        <ul id="navList">
+          <div class="move-left-logo">
+            <li>
+              <img
+                class="logo-nav"
+                src="valorant_logo-freelogovectors.net_.png"
+              />
+            </li>
+          </div>
+          
+          <div class="move-right-navs">
+            <li><a class="home-nav" href="#">HOME</a></li>
             <div class="dropdown">
-                <li><a onmouseover="agentsDropFunc()" class="agents-nav dropbtn" href="#">AGENTS</a></li>
-                <div id="agentsDrop" class="dropdown-content">
-                    <!-- <a href="#">BRIMSTONE</a>
-                    <a href="#">PHOENIX</a>
-                    <a href="#">SAGE</a>
-                    <a href="#">SOVA</a>
-                    <a href="#">VIPER</a>
-                    <a href="#">CYPHER</a>
-                    <a href="#">REYNA</a>
-                    <a href="#">KILLJOY</a>
-                    <a href="#">BREACH</a>
-                    <a href="#">OMEN</a>
-                    <a href="#">JETT</a>
-                    <a href="#">RAZE</a>
-                    <a href="#">SKYE</a>
-                    <a href="#">YORU</a>
-                    <a href="#">ASTRA</a>
-                    <a href="#">KAY/O</a>
-                    <a href="#">CHAMBER</a>
-                    <a href="#">NEON</a>
-                    <a href="#">FADE</a> -->
+              <li>
+                <a
+                  onmouseover="agentsDropFunc()"
+                  class="agents-nav dropbtn"
+                  href="#"
+                  >AGENTS</a
+                >
+              </li>
+              <div id="agentsDrop" class="dropdown-content">
+              </div>
+            </div>
+            <li><a class="news-nav" href="#">NEWS</a></li>
+            <li><a class="about-nav" href="#">ABOUT</a></li>
+            <li><a class="contact-nav" href="#">CONTACT US</a></li>
+            <li> <!--Sidebar button-->
+                <div id="sidebarButton"> 
+                    <button class="openbtn" onclick="openSidebar()">&#9776;</button>
                 </div>
-            </div>
-                <li><a class="news-nav" href="#">NEWS</a></li>
-                <li><a class="about-nav" href="#">ABOUT US</a></li>
-                <li><a class="contact-nav" href="#">CONTACT US</a></li>
-            </div>
+            </li>
+          </div>
+
+
+
+
         </ul>
-    </nav>
-</div>
+      </nav>
+    </div>
+
+    <!-- Sidebar-------------------------------------------------------- -->
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+    </div>
+      
+   
 
 
-</body>
+  </body>
 </html>

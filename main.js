@@ -3,13 +3,12 @@ var agentsList;
 
 fetchAgentsJSON().then((agents) => {
   agentsList = agents;
-  iHaveAgentsLoaded(agentsList);
   let agentNames = getAgentNamesFromAgentList(agentsList);
-  console.log(agentNames);
 
+  //There are 2 Sovas so we need to make a set with unique values
   let agentNamesUnique = new Set(agentNames);
 
-  agentNamesUnique.forEach(agent => {
+  agentNamesUnique.forEach((agent) => {
     const dropdown = document.getElementById("agentsDrop");
     let anchor = document.createElement("a");
     anchor.innerHTML = agent;
@@ -17,38 +16,26 @@ fetchAgentsJSON().then((agents) => {
   });
 });
 
-function getAgentNamesFromAgentList(agentList) {
-  return agentsList.map((agent) => agent.displayName);
+let navLinks = [];
+navLinks = document.getElementsByClassName("move-right-navs");
+let allTextContent = navLinks[0].textContent.split("\n");
+let actualTextValues = [];
+
+allTextContent.forEach((line) => {
+  if (line.trim() != "") actualTextValues.push(line.trim());
+});
+actualTextValues.pop();
+
+
+
+const mediaQuery = window.matchMedia("(max-width: 952px)");
+
+if (mediaQuery.matches) {
+    actualTextValues.forEach((value) => {
+        addNavElements(value);
+      });
 }
 
-function iHaveAgentsLoaded(agents) {
-  console.log(agents);
-}
-
-async function fetchAgentsJSON() {
-  const response = await fetch("https://valorant-api.com/v1/agents");
-  const agents = await response.json();
-  return agents.data;
-}
-
-// Header active-----------------------------------------------------
-
-function avtiveNavElement(e) {
-  if (document.querySelector("#navList a.active") !== null) {
-    document.querySelector("#navList a.active").classList.remove("active");
-  }
-  e.target.className = "active";
-}
-
-//Dripdown agents-------------------------------------------------------
-
-/* When the user hovers over the button,
-toggle between hiding and showing the dropdown content */
-function agentsDropFunc() {
-  document.getElementById("agentsDrop").classList.toggle("show");
-}
-
-//   Close the dropdown menu if the user clicks outside of it
 window.onmouseover = function (event) {
   if (
     !event.target.matches(".dropbtn") &&
@@ -65,3 +52,43 @@ window.onmouseover = function (event) {
     }
   }
 };
+
+
+
+
+
+
+////////////////// FUNKCIJE ///////////////////////////
+function getAgentNamesFromAgentList(agentList) {
+  return agentsList.map((agent) => agent.displayName);
+}
+
+async function fetchAgentsJSON() {
+  const response = await fetch("https://valorant-api.com/v1/agents");
+  const agents = await response.json();
+  return agents.data;
+}
+
+function agentsDropFunc() {
+  document.getElementById("agentsDrop").classList.toggle("show");
+}
+
+function openSidebar() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("sidebarButton").style.marginLeft = "0px";
+}
+
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeSidebar() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("sidebarButton").style.marginLeft = "0";
+}
+
+function addNavElements(value) {
+  console.log(value);
+
+  let sidebar = document.getElementById("mySidebar");
+  let anchor = document.createElement("a");
+  anchor.innerHTML = value;
+  sidebar.appendChild(anchor);
+}
