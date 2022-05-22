@@ -28,7 +28,7 @@ actualTextValues.pop();
 
 
 
-const mediaQuery = window.matchMedia("(max-width: 952px)");
+const mediaQuery = window.matchMedia("(max-width: 931px)");
 
 if (mediaQuery.matches) {
     actualTextValues.forEach((value) => {
@@ -52,8 +52,6 @@ window.onmouseover = function (event) {
     }
   }
 };
-
-
 
 
 
