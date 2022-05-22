@@ -95,7 +95,10 @@ body {
   display: flex;
   justify-content: space-around;
   background-color: #0e1921;
+
+  /* max-height:60vh; */
 }
+
 
 .abilityVid {
   margin-bottom: 8%;
@@ -106,6 +109,17 @@ body {
   width: 80%;
   height: auto;
 }
+
+
+
+@media (min-width:1100px) {
+  
+  .abilityVid{
+    height: 70vh;
+    width: auto;
+  }
+
+} 
 
 
 .abilityDescriptionContainer {
@@ -123,12 +137,10 @@ body {
   width: 80%;
   background-color: #0e1921;
   color: #fff;
-  position: absolute;
   font-size: 2rem;
   font-family: 'Valorant', sans-serif;
   margin-left: 10%;
   margin-right: 10%;
-
 }
 
 #abilityDescription {
@@ -136,6 +148,7 @@ body {
   color: #fff;
   font-size: 1rem;
   text-align: justify;
+  
   margin-left: 10%;
   margin-right: 10%;
 
