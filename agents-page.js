@@ -1,8 +1,20 @@
-
+var qs = (function(a) {
+    if (a == "") return {};
+    var b = {};
+    for (var i = 0; i < a.length; ++i)
+    {
+        var p=a[i].split('=', 2);
+        if (p.length == 1)
+            b[p[0]] = "";
+        else
+            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+    }
+    return b;
+})(window.location.search.substr(1).split('&'));
 
 var agent = 'placeholder'
-fetchAgentsJSON().then(agents => loadAgent(agents, 17));
-
+fetchAgentsJSON().then(agents => loadAgent(agents, qs.agentName));
+console.log(qs.agentName)
 
 var button1 = document.getElementById('ability1');
 var button2 = document.getElementById('ability2');
@@ -119,13 +131,16 @@ function removeButtonsSelectedClass() {
     }
 }
 
+function correctAgentByName(agent, agentName){
+    return agent.displayName.toLowerCase() === agentName
+}
 
 
-
-function loadAgent(agents, number){
-    agent = agents[number];
+function loadAgent(agents, agentName){
+    agent = agents.find((agen)=>correctAgentByName(agen, agentName));
     agentSortAbilities(agent)
     updateElementImageSource('id1', agent.fullPortraitV2)
+    updateElementTextValue('agentNameTitleScreen', agent.displayName)
     agentDescription(agent)
     loadAbilityIcons(agent)
     abilityDescription(agent, 1)
@@ -136,7 +151,7 @@ function loadAgent(agents, number){
 
 function showAbility(abilityId) {
     let videoElem = document.getElementById('abilityVidShowcase');
-    videoElem.src = "Resources/" + agent.displayName.toLowerCase() + abilityId + '.mp4';
+    videoElem.src = "Resources/" + agent.displayName.toLowerCase().replace('/', '') + abilityId + '.mp4';
     videoElem.load();
     abilityDescription(agent, abilityId)
 }
