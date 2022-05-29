@@ -21,6 +21,11 @@ body {
     min-width: 350px;
 }
 
+/* check if this is ok, if it doesnt cause problems leave */
+*::before, *::after{ 
+    box-sizing: inherit; 
+}
+
 /* Header----------------------------------- */
 
 .header-container{
@@ -214,9 +219,15 @@ ul {
 
 /* Slidebar-------------------------------------------------------------- */
 
+.slidebar {
+    height: 100vh;
+}
+
+
 #slidebar {
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
 }
 
 .slidebarTitile {
@@ -227,6 +238,87 @@ ul {
     margin-top: 2rem;
     text-shadow: -0.5em 0.15em 0.05em #bebebe;
 }
+
+
+
+
+
+
+/* trying-------------------------------------------------------------- */
+
+
+
+
+.card {
+    position: absolute;
+    overflow: hidden;
+    display: flex;
+    width: 30vw; 
+    height: 58vh; 
+    left: 2rem;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);  
+    transition: box-shadow 0.56s ease-in-out;
+    background-color: #211E27; /* #364966 */
+    background-image: linear-gradient(
+        to bottom, transparent, #211E27
+      ), url('https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/bustportrait.png');
+    background-repeat: no-repeat;
+    background-size: 40vw;
+    background-position: center;
+}
+
+
+.card:hover{
+    border: 5px solid #dc3d4b;
+    transition: .1s ease-in;
+}
+  
+.card__title{ 
+    font-family: 'Valorant';
+    padding: 0.5rem;
+    color: #f1f1f1; 
+    font-size: 3vw;
+    line-height: 1;
+    font-weight: 600;
+}  
+
+.card__thumbnail{
+    position: relative;
+    overflow: hidden;  
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+    height: 100%;
+}
+
+.card__thumbnail > .card__title{ 
+    position: absolute;
+    bottom: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.morebtn {
+    font-family: DINNextW1G;
+    padding: 0.5rem;
+    position: absolute;
+    bottom: 2rem;
+    background-color: #211E27;
+    color: #f1f1f1;
+    border-style: solid;
+    font-size: medium;
+    border-color: #f2f2f2;
+    border-width: 0.5px;
+}
+
+.morebtn:hover {
+    background-color: #dc3d4b;
+    transition: 0.5s;
+}
+
+
+
 
 
 /* Media queries ----------------------------------------------------- */
@@ -251,5 +343,11 @@ ul {
     }
     .sidebar a {
         font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 1520px) { 
+    .card {
+        background-position: top;
     }
 }
