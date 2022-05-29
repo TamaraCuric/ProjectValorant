@@ -61,7 +61,13 @@ const headerLinks = document.querySelectorAll('#navList li a').forEach(link => {
     }
 })
 
-
+var slide = document.querySelector('#slide0');
+for(let i = 1; i < 10; i ++) {
+    var clone = slide.cloneNode(true);
+    clone.id = `elem${i}`;
+    slide.after(clone);
+    console.log(clone);
+}
 
 
 ////////////////// FUNKCIJE ///////////////////////////
