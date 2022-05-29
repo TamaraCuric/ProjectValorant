@@ -17,6 +17,8 @@ html {
 body {
     max-width: 100%;
     min-width: 350px;
+    background-color: #fcfced ;
+
 }
 
 .background {
@@ -55,11 +57,7 @@ body {
     width:100%;
 }
 
-.imgContainer :hover{
-    background-color:#ff4655;
-    height:auto;
-    transition: .5s ease;
-}
+
 
 img{
     width:100%;
@@ -75,7 +73,15 @@ img img{
 
 .imgAnchor{
     width:80vw;
+    
 }
+
+.imgAnchor :hover{
+    background-color:#ff4655;
+    height:auto;
+    transition: .5s ease;
+}
+
 
 .articleText{
     color:gray;
