@@ -109,8 +109,11 @@ ul {
     display:block;
 }
 
+.active {
+    background-color: #f1f1f1;
+    color: black!important;
+}
 
-    
 
 
 /* Scrollbar on dropdown */
@@ -208,6 +211,23 @@ ul {
     min-height: 100%;
     z-index: 1;
 }
+
+/* Slidebar-------------------------------------------------------------- */
+
+#slidebar {
+  display: flex;
+  justify-content: space-around;
+}
+
+.slidebarTitile {
+    font-family: 'Valorant';
+    font-size: 3.5rem;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+    text-shadow: -0.5em 0.15em 0.05em #bebebe;
+}
+
 
 /* Media queries ----------------------------------------------------- */
  

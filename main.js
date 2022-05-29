@@ -53,6 +53,14 @@ window.onmouseover = function (event) {
   }
 };
 
+const activePage = window.location.pathname;
+const headerLinks = document.querySelectorAll('#navList li a').forEach(link => {
+    if(link.href.includes(activePage)) {
+        // console.log(activePage);
+        link.classList.add('active');
+    }
+})
+
 
 
 
@@ -84,9 +92,9 @@ function closeSidebar() {
 
 function addNavElements(value) {
   console.log(value);
-
   let sidebar = document.getElementById("mySidebar");
   let anchor = document.createElement("a");
   anchor.innerHTML = value;
   sidebar.appendChild(anchor);
 }
+
