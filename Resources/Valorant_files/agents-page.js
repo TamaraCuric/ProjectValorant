@@ -136,9 +136,7 @@ function correctAgentByName(agent, agentName){
 
 
 function loadAgent(agents, agentName){
-    agent = agents.find((agentInArray)=>correctAgentByName(agentInArray, agentName));
-    if(agent == null)
-        agent = agents[0]
+    agent = agents.find((agen)=>correctAgentByName(agen, agentName));
     agentSortAbilities(agent)
     updateElementImageSource('id1', agent.fullPortraitV2)
     updateElementTextValue('agentNameTitleScreen', agent.displayName)
