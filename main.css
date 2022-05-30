@@ -277,7 +277,7 @@ ul {
     background-color: transparent;
     border: none;
     font-size: 4rem;
-    right: 26rem;
+    right: 43vw;
 }
 
 .slideRight {
@@ -286,7 +286,7 @@ ul {
     background-color: transparent;
     border: none;
     font-size: 4rem;
-    left: 26rem;
+    left: 43vw;
 }
 
 
@@ -295,7 +295,11 @@ ul {
 
 /* trying-------------------------------------------------------------- */
 
-
+#slide0 {
+    background-image: linear-gradient(
+        to bottom, transparent, #211E27
+      ), url('https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/bustportrait.png');
+}
 
 
 .card {
@@ -307,9 +311,6 @@ ul {
     height: 58vh; 
     /* left: 2rem; */
     background-color: #211E27; /* #364966 */
-    background-image: linear-gradient(
-        to bottom, transparent, #211E27
-      ), url('https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/bustportrait.png');
     background-repeat: no-repeat;
     background-size: 40vw;
     background-position: center;

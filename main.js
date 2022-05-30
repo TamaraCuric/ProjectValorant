@@ -7,24 +7,22 @@ const rightButton = document.querySelector(".slideRight");
 const carouselWidth = carousel.offsetWidth;
 const cardStyle = card.currentStyle || window.getComputedStyle(card);
 const cardMarginRight = Number(cardStyle.marginRight.match(/\d+/g)[0]);
-const cardCount = carousel.querySelectorAll(".card").length;
-var slide = document.querySelector("#slide0");
+const slide = document.querySelector("#slide0");
 
+document.onkeydown = checkKey;
 var agentsList;
 var offset = 0;
-const maxX = -(
-    ((cardCount / 3) * carouselWidth + cardMarginRight * (cardCount / 3))
-    //   -carouselWidth -
-    //   cardMarginRight
-);
+
 
 fetchAgentsJSON().then((agents) => {
   agentsList = agents;
   let agentNames = getAgentNamesFromAgentList(agentsList);
-
+  let agentPics = getAgentPicFromList(agentsList);
+    
   //There are 2 Sovas so we need to make a set with unique values
   let agentNamesUnique = new Set(agentNames);
-
+   let agentPicsUnique = agentPics.filter(pic => pic !== null);
+   
   agentNamesUnique.forEach((agent) => {
     const dropdown = document.getElementById("agentsDrop");
     let anchor = document.createElement("a");
@@ -33,23 +31,21 @@ fetchAgentsJSON().then((agents) => {
   });
 
   var agentNamesSlide = Array.from(agentNamesUnique).slice(1, 9);
-
   
-  for (let i = 0; i < agentNamesSlide.length; i++) {
-    var clone = slide.cloneNode(true);
-    clone.id = `slide${i + 1}`;
-    clone.getElementsByClassName(
-      "card__title"
-    )[0].innerHTML = `${agentNamesSlide[i]}`;
-    slide.after(clone);
-  }
+
+  cloningCards(agentNamesSlide);
+
+  const cardCount = carousel.querySelectorAll(".card").length;
+  const maxX = -(
+    ((cardCount / 3) * carouselWidth + cardMarginRight * (cardCount / 3)) -carouselWidth -cardMarginRight
+  );
 
   leftButton.addEventListener("click", function () {
     clickLeftButton();
   });
 
   rightButton.addEventListener("click", function () {
-    clickRightButton();
+    clickRightButton(maxX);
   });
 });
 
@@ -97,9 +93,7 @@ const headerLinks = document
     }
   });
 
-//carousel///////////////////////////////////////
 
-document.onkeydown = checkKey;
 
 ////////////////// FUNKCIJE ///////////////////////////
 
@@ -109,7 +103,11 @@ async function fetchAgentsJSON() {
   return agents.data;
 }
 
-function getAgentNamesFromAgentList(agentList) {
+function getAgentPicFromList(agentsList) {
+  return agentsList.map((agent) => agent.bustPortrait);
+}
+
+function getAgentNamesFromAgentList(agentsList) {
   return agentsList.map((agent) => agent.displayName);
 }
 
@@ -129,7 +127,6 @@ function closeSidebar() {
 }
 
 function addNavElements(value) {
-  console.log(value);
   let sidebar = document.getElementById("mySidebar");
   let anchor = document.createElement("a");
   anchor.innerHTML = value;
@@ -139,15 +136,19 @@ function addNavElements(value) {
 function clickLeftButton() {
   if (offset !== 0) {
     offset += carouselWidth + cardMarginRight;
-    carousel.style.transform = `translateX(${offset}px)`;
+  } else {
+      offset = -1780;
   }
+  carousel.style.transform = `translateX(${offset}px)`;
 }
 
-function clickRightButton() {
+function clickRightButton(maxX) {
   if (offset !== maxX) {
     offset -= carouselWidth + cardMarginRight;
-    carousel.style.transform = `translateX(${offset}px)`;
+  } else {
+      offset = 0;
   }
+  carousel.style.transform = `translateX(${offset}px)`;
 }
 
 function checkKey(e) {
@@ -163,5 +164,16 @@ function checkKey(e) {
       offset -= carouselWidth + cardMarginRight;
       carousel.style.transform = `translateX(${offset}px)`;
     }
+  }
+}
+
+function cloningCards(agentNamesSlide) {
+  for (let i = 0; i < agentNamesSlide.length; i++) {
+    var clone = slide.cloneNode(true);
+    clone.id = `slide${i + 1}`;
+    clone.getElementsByClassName(
+      "card__title"
+    )[0].innerHTML = `${agentNamesSlide[i]}`;
+    slide.after(clone);
   }
 }
