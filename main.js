@@ -21,7 +21,8 @@ fetchAgentsJSON().then((agents) => {
     
   //There are 2 Sovas so we need to make a set with unique values
   let agentNamesUnique = new Set(agentNames);
-   let agentPicsUnique = agentPics.filter(pic => pic !== null);
+   let agentPicsUnique = agentPics.filter(pic => pic !== null).slice(1,9);
+   
    
   agentNamesUnique.forEach((agent) => {
     const dropdown = document.getElementById("agentsDrop");
@@ -33,7 +34,7 @@ fetchAgentsJSON().then((agents) => {
   var agentNamesSlide = Array.from(agentNamesUnique).slice(1, 9);
   
 
-  cloningCards(agentNamesSlide);
+  cloningCards(agentNamesSlide, agentPicsUnique);
 
   const cardCount = carousel.querySelectorAll(".card").length;
   const maxX = -(
@@ -167,13 +168,14 @@ function checkKey(e) {
   }
 }
 
-function cloningCards(agentNamesSlide) {
-  for (let i = 0; i < agentNamesSlide.length; i++) {
-    var clone = slide.cloneNode(true);
-    clone.id = `slide${i + 1}`;
-    clone.getElementsByClassName(
-      "card__title"
-    )[0].innerHTML = `${agentNamesSlide[i]}`;
-    slide.after(clone);
+function cloningCards(agentNamesSlide, agentPicsUnique) {
+    for (let i = 0; i < agentNamesSlide.length; i++) {
+      var clone = slide.cloneNode(true);
+      clone.id = `slide${i + 1}`;
+      clone.getElementsByClassName(
+        "card__title"
+      )[0].innerHTML = `${agentNamesSlide[i]}`;
+      clone.style.cssText = 'background-image: linear-gradient(to bottom, transparent,#211E27), url('+agentPicsUnique[i]+');'
+      slide.after(clone);
+    }
   }
-}
