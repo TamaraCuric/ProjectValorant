@@ -14,7 +14,12 @@ fetchAgentsJSON().then((agents) => {
     anchor.innerHTML = agent;
     dropdown.appendChild(anchor);
   });
+
+
+
+  
 });
+
 
 let navLinks = [];
 navLinks = document.getElementsByClassName("move-right-navs");
@@ -56,17 +61,18 @@ window.onmouseover = function (event) {
 const activePage = window.location.pathname;
 const headerLinks = document.querySelectorAll('#navList li a').forEach(link => {
     if(link.href.includes(activePage)) {
-        // console.log(activePage);
         link.classList.add('active');
     }
 })
+
+
 
 var slide = document.querySelector('#slide0');
 for(let i = 1; i < 9; i ++) {
     var clone = slide.cloneNode(true);
     clone.id = `slide${i}`;
     slide.after(clone);
-    console.log(clone);
+    // console.log(clone);
 }
 
 
@@ -76,16 +82,13 @@ const carousel = document.querySelector(".carouselSlides");
 const card = carousel.querySelector(".card");
 const leftButton = document.querySelector(".slideLeft");
 const rightButton = document.querySelector(".slideRight");
-// console.log(carousel, card, leftButton, rightButton);
+
 
 const carouselWidth = carousel.offsetWidth;
-// console.log(carouselWidth);
 const cardStyle = card.currentStyle || window.getComputedStyle(card);
 const cardMarginRight = Number(cardStyle.marginRight.match(/\d+/g)[0]);
-// console.log(cardMarginRight);
 
 const cardCount = carousel.querySelectorAll(".card").length;
-// console.log(cardCount);
 
 let offset = 0;
 const maxX = -(
@@ -109,6 +112,27 @@ rightButton.addEventListener("click", function () {
   }
 });
 
+// const arrowKeys = () => {
+//     window.addEventListener("onkeydown", e => {
+//         if (e.key === 37) {
+//             if (offset !== 0) {
+//                 offset += carouselWidth + cardMarginRight;
+//                 carousel.style.transform = `translateX(${offset}px)`;
+//             }
+//             return false;
+//         } else if (e.key === 39) {
+//             if (offset !== maxX) {
+//                 offset -= carouselWidth + cardMarginRight;
+//                 carousel.style.transform = `translateX(${offset}px)`;
+//             }
+//             return false;
+//         }
+//     });
+// };
+
+// if (keyboard === "true") {
+//    arrowKeys();
+// }
 
 ////////////////// FUNKCIJE ///////////////////////////
 function getAgentNamesFromAgentList(agentList) {
@@ -143,4 +167,6 @@ function addNavElements(value) {
   anchor.innerHTML = value;
   sidebar.appendChild(anchor);
 }
+
+
 
