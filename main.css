@@ -78,9 +78,9 @@ ul {
     position: fixed; 
     right: 7vw;
 } 
-  .dropbtn:hover, .dropbtn:focus {
+.dropbtn:hover, .dropbtn:focus {
     background-color: #3a3b3c;
-  }  
+}  
 
 .dropdown {
     position: relative;
@@ -221,6 +221,7 @@ ul {
 
 .slidebar {
     height: 100vh;
+    position: relative;
 }
 
 
@@ -239,6 +240,38 @@ ul {
     text-shadow: -0.5em 0.15em 0.05em #bebebe;
 }
 
+/* trying-------------------------------------------------------------- */
+
+.carouselContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    overflow: hidden;
+    height: 58vh;
+    width: 92vw;
+    margin: 0 auto;
+}
+
+.carouselSlides {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    transition: all 1s ease;
+}
+
+.button-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+  }
 
 
 
@@ -250,14 +283,13 @@ ul {
 
 
 .card {
-    position: absolute;
-    overflow: hidden;
-    display: flex;
+    display: inline-block;
+    margin-right: 1vw;
+    /* margin-left: 1vw; */
     width: 30vw; 
+    min-width: 30vw;
     height: 58vh; 
-    left: 2rem;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);  
-    transition: box-shadow 0.56s ease-in-out;
+    /* left: 2rem; */
     background-color: #211E27; /* #364966 */
     background-image: linear-gradient(
         to bottom, transparent, #211E27
