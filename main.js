@@ -4,19 +4,30 @@ const carousel = document.querySelector(".carouselSlides");
 const card = carousel.querySelector(".card");
 const leftButton = document.querySelector(".slideLeft");
 const rightButton = document.querySelector(".slideRight");
+const slide = document.querySelector("#slide0");
+
 const carouselWidth = carousel.offsetWidth;
 const cardStyle = card.currentStyle || window.getComputedStyle(card);
 const cardMarginRight = Number(cardStyle.marginRight.match(/\d+/g)[0]);
-const slide = document.querySelector("#slide0");
-const mediaQuerySlider = window.matchMedia("(max-width: 920px)");/////////
+const mediaQuerySlider = window.matchMedia("(max-width: 920px)")
 
-document.onkeydown = checkKey;
 var agentsList;
 var offset = 0;
 var offsetSmall = 0;
 
 
+
+
 fetchAgentsJSON().then((agents) => {
+
+// dobijamo listu agent names -> agents picks
+//  micemo drugog sovu, opet isto radimo za slike
+// za svako ime agenta kreiramo anchor element za dropdown menu
+// imena za slajdove agenata
+//  kreiraj klonove kartica
+//  prebroj kartice nakon kreiranja
+
+
   agentsList = agents;
   let agentNames = getAgentNamesFromAgentList(agentsList);
   let agentPics = getAgentPicFromList(agentsList);
@@ -36,7 +47,7 @@ fetchAgentsJSON().then((agents) => {
 
   cloningCards(agentNamesSlide, agentPicsUnique);
 
-  const cardCount = carousel.querySelectorAll(".card").length;
+  const cardCount = numOfCardsCreated();
   const maxX = -(
     (cardCount / 3) * carouselWidth +
     cardMarginRight * (cardCount / 3) -
@@ -50,7 +61,10 @@ fetchAgentsJSON().then((agents) => {
     carouselWidth -
     cardMarginRight
   ); 
-  
+
+document.addEventListener('keydown', event=>{checkKey(event, maxX)});
+
+
   
  
 
@@ -61,6 +75,11 @@ fetchAgentsJSON().then((agents) => {
     rightButton.addEventListener("click", function () {
       clickRightButtonSmall(maxXSmall);
     });
+
+    // setInterval(function () {
+    //     clickRightButtonSmall(maxXSmall);
+    // }, 3000); 
+
   } else {
     leftButton.addEventListener("click", function () {
       clickLeftButton();
@@ -71,6 +90,10 @@ fetchAgentsJSON().then((agents) => {
       clickRightButton(maxX);
       checkKey(maxX);
     });
+
+    // setInterval(function () {
+    //     clickRightButton(maxX);
+    // }, 3000); 
   }
 });
 
@@ -123,6 +146,10 @@ const headerLinks = document
   });
 
 
+
+function numOfCardsCreated() {
+    return carousel.querySelectorAll(".card").length;
+}
 
 ////////////////// FUNKCIJE ///////////////////////////
 
@@ -179,11 +206,12 @@ function clickRightButtonSmall (maxXSmall) {
     carousel.style.transform = `translateX(${offsetSmall}px)`; 
 }
 
-function clickLeftButton() {
+function clickLeftButton(maxX) {
+    console.log(offset);
   if (offset !== 0) {
     offset += carouselWidth + cardMarginRight;
   } else {
-      offset = -1748;
+      offset = maxX;
   }
   carousel.style.transform = `translateX(${offset}px)`;
 }
@@ -199,9 +227,8 @@ function clickRightButton(maxX) {
 
 //funkcija ne radi kako treba za desno keystroke
 function checkKey(e, maxX) {
-  e = e || window.event;
   if (e.keyCode === 37) {
-    clickLeftButton();
+    clickLeftButton(maxX);
   } else if (e.keyCode === 39) {
     clickRightButton(maxX);
   }

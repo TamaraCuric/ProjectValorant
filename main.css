@@ -290,9 +290,6 @@ ul {
 }
 
 
-
-
-
 /* Cards for slider----------------------------------------- */
 
 #slide0 {
@@ -364,6 +361,66 @@ ul {
     transition: 0.5s;
 }
 
+/* Modal window-------------------------------------------------------- */
+
+
+/* .modal { */
+    /* display: none;  */
+    /* position: fixed; 
+    z-index: 1; 
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);  
+} */
+  
+/* .modal-content {
+    background-image: linear-gradient(
+        to bottom, transparent, #211E27
+      ),url("https://media.valorant-api.com/agents/f94c3b30-42be-e959-889c-5aa313dba261/bustportrait.png");
+    background-color: #211E27;
+    background-position: center;
+    background-size: 85vw;
+    background-repeat: no-repeat;
+    margin: 8.5vh auto;
+    padding: 2vw;
+    border: 1vw solid #dc3d4b;
+    width: 90vw;
+    height: 90vh;
+} */
+  
+/* .modal-text {
+    color: #f1f1f1;
+    position: relative;
+    top: 57vh;
+    font-size: 2.6vw; */
+    /* font-weight: lighter; */
+/* } */
+
+/* .modal-title{
+    position: relative;
+    left: 34vw;
+    top: 55vh;
+    color: #f1f1f1; 
+    font-size: 7vw;
+    line-height: 1;
+}
+
+.close {
+    color: #bebebe;
+    position: relative;
+    left: 82vw;
+    top: -6vh;
+    font-size: 5vw;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+} */
 
 
 
