@@ -421,7 +421,7 @@ ul {
     } 
 
     .card__thumbnail > .card__title{ 
-        bottom: 7rem;
+        bottom: 10vw;
     }
 
     .morebtn {
