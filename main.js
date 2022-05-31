@@ -11,7 +11,9 @@ const cardStyle = card.currentStyle || window.getComputedStyle(card);
 const cardMarginRight = Number(cardStyle.marginRight.match(/\d+/g)[0]);
 const mediaQuerySlider = window.matchMedia("(max-width: 920px)")
 
-var agentsList;
+const mediaQuery = window.matchMedia("(max-width: 931px)");
+
+
 var offset = 0;
 var offsetSmall = 0;
 
@@ -19,16 +21,13 @@ var offsetSmall = 0;
 
 
 fetchAgentsJSON().then((agents) => {
+    // hej daj mi 9 agenata
 
-// dobijamo listu agent names -> agents picks
-//  micemo drugog sovu, opet isto radimo za slike
-// za svako ime agenta kreiramo anchor element za dropdown menu
-// imena za slajdove agenata
-//  kreiraj klonove kartica
-//  prebroj kartice nakon kreiranja
+// agents.pic
+// agents.displayName
 
+  let agentsList = agents;
 
-  agentsList = agents;
   let agentNames = getAgentNamesFromAgentList(agentsList);
   let agentPics = getAgentPicFromList(agentsList);
 
@@ -97,59 +96,42 @@ document.addEventListener('keydown', event=>{checkKey(event, maxX)});
   }
 });
 
-let navLinks = [];
-navLinks = document.getElementsByClassName("move-right-navs");
-let allTextContent = navLinks[0].textContent.split("\n");
-let actualTextValues = [];
 
-allTextContent.forEach((line) => {
-  if (line.trim() != "") actualTextValues.push(line.trim());
-});
-actualTextValues.pop();
 
-const mediaQuery = window.matchMedia("(max-width: 931px)");
 
 
 
 
 if (mediaQuery.matches) {
-  actualTextValues.forEach((value) => {
-    addNavElements(value);
+  let navLinkTitles = getAllNavElementTitles();
+  navLinkTitles.forEach((title) => {
+    addNavElements(title);
   });
 }
+
+
+
+
+activateNavLink();
 
 window.onmouseover = function (event) {
-  if (
-    !event.target.matches(".dropbtn") &&
-    !event.target.matches(".dropdown-content") &&
-    !event.target.matches(".dropdown-content a")
-  ) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains("show")) {
-        openDropdown.classList.remove("show");
+    if (
+      !event.target.matches(".dropbtn") &&
+      !event.target.matches(".dropdown-content") &&
+      !event.target.matches(".dropdown-content a")
+    ) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains("show")) {
+          openDropdown.classList.remove("show");
+        }
       }
     }
-  }
-};
+  };
+  
 
-
-const activePage = window.location.pathname;
-const headerLinks = document
-  .querySelectorAll("#navList li a")
-  .forEach((link) => {
-    if (link.href.includes(activePage)) {
-      link.classList.add("active");
-    }
-  });
-
-
-
-function numOfCardsCreated() {
-    return carousel.querySelectorAll(".card").length;
-}
 
 ////////////////// FUNKCIJE ///////////////////////////
 
@@ -246,3 +228,28 @@ function cloningCards(agentNamesSlide, agentPicsUnique) {
     }
   }
 
+  function getAllNavElementTitles() {
+    let navLinks = document.getElementsByClassName("move-right-navs");
+    let allTextContentFromNavLinksContainer = navLinks[0].textContent.split("\n");
+    let navTitles = [];
+  
+    allTextContentFromNavLinksContainer.forEach((line) => {
+      if (line.trim() != "") navTitles.push(line.trim());
+    });
+    //last line catches icon as well so we pop it off
+    navTitles.pop();
+    return navTitles
+  }
+
+  function activateNavLink() {
+    const activePage = window.location.pathname;
+    document.querySelectorAll("#navList li a").forEach((link) => {
+      if (link.href.includes(activePage)) {
+        link.classList.add("active");
+      }
+    });
+  }
+  
+  function numOfCardsCreated() {
+    return carousel.querySelectorAll(".card").length;
+}
