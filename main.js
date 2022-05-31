@@ -9,98 +9,19 @@ const slide = document.querySelector("#slide0");
 const carouselWidth = carousel.offsetWidth;
 const cardStyle = card.currentStyle || window.getComputedStyle(card);
 const cardMarginRight = Number(cardStyle.marginRight.match(/\d+/g)[0]);
-const mediaQuerySlider = window.matchMedia("(max-width: 920px)")
+const mediaQuerySlider = window.matchMedia("(max-width: 920px)");
 
 const mediaQuery = window.matchMedia("(max-width: 931px)");
-
 
 var offset = 0;
 var offsetSmall = 0;
 
-
-
-
 fetchAgentsJSON().then((agents) => {
-    // hej daj mi 9 agenata
-
-// agents.pic
-// agents.displayName
-
-  let agentsList = agents;
-
-  let agentNames = getAgentNamesFromAgentList(agentsList);
-  let agentPics = getAgentPicFromList(agentsList);
-
-  //There are 2 Sovas so we need to make a set with unique values
-  let agentNamesUnique = new Set(agentNames);
-  let agentPicsUnique = agentPics.filter((pic) => pic !== null).slice(1, 9);
-
-  agentNamesUnique.forEach((agent) => {
-    const dropdown = document.getElementById("agentsDrop");
-    let anchor = document.createElement("a");
-    anchor.innerHTML = agent;
-    dropdown.appendChild(anchor);
-  });
-
-  var agentNamesSlide = Array.from(agentNamesUnique).slice(1, 9);
-
-  cloningCards(agentNamesSlide, agentPicsUnique);
-
-  const cardCount = numOfCardsCreated();
-  const maxX = -(
-    (cardCount / 3) * carouselWidth +
-    cardMarginRight * (cardCount / 3) -
-    carouselWidth -
-    cardMarginRight
-  );
- 
-  const maxXSmall =  -(
-    cardCount * carouselWidth +
-    cardMarginRight * cardCount -
-    carouselWidth -
-    cardMarginRight
-  ); 
-
-document.addEventListener('keydown', event=>{checkKey(event, maxX)});
-
-
-  
- 
-
-  if (mediaQuerySlider.matches) {
-    leftButton.addEventListener("click", function () {
-      clickLeftButtonSmall();
-    });
-    rightButton.addEventListener("click", function () {
-      clickRightButtonSmall(maxXSmall);
-    });
-
-    // setInterval(function () {
-    //     clickRightButtonSmall(maxXSmall);
-    // }, 3000); 
-
-  } else {
-    leftButton.addEventListener("click", function () {
-      clickLeftButton();
-      checkKey(maxX);
-    });
-
-    rightButton.addEventListener("click", function () {
-      clickRightButton(maxX);
-      checkKey(maxX);
-    });
-
-    // setInterval(function () {
-    //     clickRightButton(maxX);
-    // }, 3000); 
-  }
+  agents = agents.filter((agent) => agent.isPlayableCharacter == true);
+  populateDropdownMenu(agents);
+  cloningCards(agents.slice(1, 9));
+  sliderMoveEvents();
 });
-
-
-
-
-
-
 
 if (mediaQuery.matches) {
   let navLinkTitles = getAllNavElementTitles();
@@ -109,28 +30,24 @@ if (mediaQuery.matches) {
   });
 }
 
-
-
-
 activateNavLink();
 
 window.onmouseover = function (event) {
-    if (
-      !event.target.matches(".dropbtn") &&
-      !event.target.matches(".dropdown-content") &&
-      !event.target.matches(".dropdown-content a")
-    ) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains("show")) {
-          openDropdown.classList.remove("show");
-        }
+  if (
+    !event.target.matches(".dropbtn") &&
+    !event.target.matches(".dropdown-content") &&
+    !event.target.matches(".dropdown-content a")
+  ) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains("show")) {
+        openDropdown.classList.remove("show");
       }
     }
-  };
-  
+  }
+};
 
 
 ////////////////// FUNKCIJE ///////////////////////////
@@ -170,39 +87,21 @@ function addNavElements(value) {
   anchor.innerHTML = value;
   sidebar.appendChild(anchor);
 }
-function clickLeftButtonSmall () {
-    if (offsetSmall !== 0) {
-        offsetSmall += carouselWidth + cardMarginRight;
-    } else {
-        offsetSmall = -6856;
-    }
-    carousel.style.transform = `translateX(${offsetSmall}px)`;
-}
 
-function clickRightButtonSmall (maxXSmall) {
-    if (offsetSmall !== maxXSmall) {
-        offsetSmall -= carouselWidth + cardMarginRight;
-    }  else {
-        offsetSmall = 0;
-    }  
-    carousel.style.transform = `translateX(${offsetSmall}px)`; 
-}
-
-function clickLeftButton(maxX) {
-    console.log(offset);
+function moveSlideLeft(maxXVal) {
   if (offset !== 0) {
     offset += carouselWidth + cardMarginRight;
   } else {
-      offset = maxX;
+    offset = maxXVal;
   }
   carousel.style.transform = `translateX(${offset}px)`;
 }
 
-function clickRightButton(maxX) {
-  if (offset !== maxX) {
+function moveSlideRight(maxXVal) {
+  if (offset !== maxXVal) {
     offset -= carouselWidth + cardMarginRight;
   } else {
-      offset = 0;
+    offset = 0;
   }
   carousel.style.transform = `translateX(${offset}px)`;
 }
@@ -210,46 +109,104 @@ function clickRightButton(maxX) {
 //funkcija ne radi kako treba za desno keystroke
 function checkKey(e, maxX) {
   if (e.keyCode === 37) {
-    clickLeftButton(maxX);
+    moveSlideLeft(maxX);
   } else if (e.keyCode === 39) {
-    clickRightButton(maxX);
+    moveSlideRight(maxX);
   }
 }
 
-function cloningCards(agentNamesSlide, agentPicsUnique) {
-    for (let i = 0; i < agentNamesSlide.length; i++) {
-      var clone = slide.cloneNode(true);
-      clone.id = `slide${i + 1}`;
-      clone.getElementsByClassName(
-        "card__title"
-      )[0].innerHTML = `${agentNamesSlide[i]}`;
-      clone.style.cssText = 'background-image: linear-gradient(to bottom, transparent,#211E27), url('+agentPicsUnique[i]+');'
-      slide.after(clone);
+function cloningCards(agents) {
+  for (let i = 0; i < agents.length; i++) {
+    var clone = slide.cloneNode(true);
+    clone.id = `slide${i + 1}`;
+    clone.getElementsByClassName(
+      "card__title"
+    )[0].innerHTML = `${agents[i].displayName}`;
+    clone.style.cssText =
+      "background-image: linear-gradient(to bottom, transparent,#211E27), url(" +
+      agents[i].bustPortrait +
+      ");";
+    slide.after(clone);
+  }
+}
+
+function getAllNavElementTitles() {
+  let navLinks = document.getElementsByClassName("move-right-navs");
+  let allTextContentFromNavLinksContainer = navLinks[0].textContent.split("\n");
+  let navTitles = [];
+
+  allTextContentFromNavLinksContainer.forEach((line) => {
+    if (line.trim() != "") navTitles.push(line.trim());
+  });
+  //last line catches icon as well so we pop it off
+  navTitles.pop();
+  return navTitles;
+}
+
+function activateNavLink() {
+  const activePage = window.location.pathname;
+  document.querySelectorAll("#navList li a").forEach((link) => {
+    if (link.href.includes(activePage)) {
+      link.classList.add("active");
     }
-  }
+  });
+}
 
-  function getAllNavElementTitles() {
-    let navLinks = document.getElementsByClassName("move-right-navs");
-    let allTextContentFromNavLinksContainer = navLinks[0].textContent.split("\n");
-    let navTitles = [];
-  
-    allTextContentFromNavLinksContainer.forEach((line) => {
-      if (line.trim() != "") navTitles.push(line.trim());
-    });
-    //last line catches icon as well so we pop it off
-    navTitles.pop();
-    return navTitles
-  }
+function numOfCardsCreated() {
+  return carousel.querySelectorAll(".card").length;
+}
 
-  function activateNavLink() {
-    const activePage = window.location.pathname;
-    document.querySelectorAll("#navList li a").forEach((link) => {
-      if (link.href.includes(activePage)) {
-        link.classList.add("active");
-      }
+function populateDropdownMenu(agents) {
+  agents.forEach((agent) => {
+    const dropdown = document.getElementById("agentsDrop");
+    let anchor = document.createElement("a");
+    anchor.innerHTML = agent.displayName;
+    dropdown.appendChild(anchor);
+  });
+}
+
+function maxXCooridante(cardCount) {
+  return -(
+    (cardCount / 3) * carouselWidth +
+    cardMarginRight * (cardCount / 3) -
+    carouselWidth -
+    cardMarginRight
+  );
+}
+
+function maxXSmallCoordinate(cardCount) {
+  return -(
+    cardCount * carouselWidth +
+    cardMarginRight * cardCount -
+    carouselWidth -
+    cardMarginRight
+  );
+}
+
+function sliderMoveEvents() {
+    const cardCount = numOfCardsCreated();
+    const maxX = maxXCooridante(cardCount);
+    const maxXSmall = maxXSmallCoordinate(cardCount);
+    document.addEventListener("keydown", (event) => {
+        checkKey(event, maxX);
     });
-  }
-  
-  function numOfCardsCreated() {
-    return carousel.querySelectorAll(".card").length;
+
+    leftButton.addEventListener("click", function () {
+        moveSlideLeft(calculateMaxXVal(maxX, maxXSmall));
+    });
+
+    rightButton.addEventListener("click", function () {
+        moveSlideRight(calculateMaxXVal(maxX, maxXSmall));
+    });
+
+    setInterval(function () {
+        moveSlideRight(calculateMaxXVal(maxX, maxXSmall));
+    }, 3000);
+}
+
+function calculateMaxXVal(maxX, maxXSmall) {
+    let maxXVal = maxX;
+    if (mediaQuerySlider.matches)
+        maxXVal = maxXSmall;
+    return maxXVal;
 }
