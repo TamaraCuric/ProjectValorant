@@ -425,25 +425,25 @@ ul {
     }
 
     .morebtn {
-        padding: 1rem;
-        bottom: 2rem;
-        font-size: 2.5rem;
+        padding: 2vw;
+        bottom: 3.5vw;
+        font-size: 4vw;
         border-width: 1px;
     }
 
     .slideLeft {
-        font-size: 8rem;
+        font-size: 12vw;
         right: 41vw;
     }
     
     .slideRight {
-        font-size: 8rem;
+        font-size: 12vw;
         left: 41vw;
     }
 
     .slidebarTitile {
-        font-size: 6rem;
-        padding: 2rem;
+        font-size: 12vw;
+        padding: 5vw;
         margin-top: 4.5vh;
     }
 
