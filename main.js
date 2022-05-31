@@ -21,7 +21,7 @@ fetchAgentsJSON().then((agents) => {
     
   //There are 2 Sovas so we need to make a set with unique values
   let agentNamesUnique = new Set(agentNames);
-   let agentPicsUnique = agentPics.filter(pic => pic !== null).slice(1,9);
+  let agentPicsUnique = agentPics.filter((pic) => pic !== null).slice(1, 9);
    
    
   agentNamesUnique.forEach((agent) => {
@@ -40,14 +40,22 @@ fetchAgentsJSON().then((agents) => {
   const maxX = -(
     ((cardCount / 3) * carouselWidth + cardMarginRight * (cardCount / 3)) -carouselWidth -cardMarginRight
   );
+  const maxXSmall = -(
+    (cardCount * carouselWidth + cardMarginRight * cardCount) -carouselWidth -cardMarginRight
+  );
 
   leftButton.addEventListener("click", function () {
     clickLeftButton();
+    checkKey(maxX);
   });
+  
 
   rightButton.addEventListener("click", function () {
     clickRightButton(maxX);
+    checkKey(maxX);
   });
+  
+
 });
 
 let navLinks = [];
@@ -61,6 +69,11 @@ allTextContent.forEach((line) => {
 actualTextValues.pop();
 
 const mediaQuery = window.matchMedia("(max-width: 931px)");
+const mediaQuerySlider = window.matchMedia("(max-width: 920px)");
+
+if(mediaQuerySlider.matches) {
+
+}
 
 if (mediaQuery.matches) {
   actualTextValues.forEach((value) => {
@@ -84,6 +97,7 @@ window.onmouseover = function (event) {
     }
   }
 };
+
 
 const activePage = window.location.pathname;
 const headerLinks = document
@@ -138,7 +152,7 @@ function clickLeftButton() {
   if (offset !== 0) {
     offset += carouselWidth + cardMarginRight;
   } else {
-      offset = -1780;
+      offset = -1748;
   }
   carousel.style.transform = `translateX(${offset}px)`;
 }
@@ -152,19 +166,13 @@ function clickRightButton(maxX) {
   carousel.style.transform = `translateX(${offset}px)`;
 }
 
-function checkKey(e) {
+//funkcija ne radi kako treba za desno keystroke
+function checkKey(e, maxX) {
   e = e || window.event;
-
   if (e.keyCode === 37) {
-    if (offset !== 0) {
-      offset += carouselWidth + cardMarginRight;
-      carousel.style.transform = `translateX(${offset}px)`;
-    }
+    clickLeftButton();
   } else if (e.keyCode === 39) {
-    if (offset !== maxX) {
-      offset -= carouselWidth + cardMarginRight;
-      carousel.style.transform = `translateX(${offset}px)`;
-    }
+    clickRightButton(maxX);
   }
 }
 
@@ -179,3 +187,4 @@ function cloningCards(agentNamesSlide, agentPicsUnique) {
       slide.after(clone);
     }
   }
+
