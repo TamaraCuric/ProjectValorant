@@ -449,7 +449,7 @@ ul {
 
     .carouselContainer {
         height: 58vh;
-        /* width: 94vw; */
+        width: 92vw; 
         margin: 0 auto;
         margin-top: 6vh;
     }
