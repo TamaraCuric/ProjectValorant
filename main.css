@@ -394,7 +394,7 @@ ul {
 
 .modal-title{
     position: relative;
-    top: 61.5vh; 
+    top: 65vh; 
     color: #f1f1f1; 
     font-size: 7vw;
     line-height: 1;
@@ -404,7 +404,7 @@ ul {
     max-width: 6vw;
     height: auto;
     position: relative;
-    top: 48vh;
+    top: 51vh;
 }
 .abbilities{ 
     display: flex;
@@ -414,7 +414,7 @@ ul {
 
 .abbilities img{
     max-width: 10vw;
-    margin-top: 58vh;
+    margin-top: 61vh;
 }
 
 .close {
