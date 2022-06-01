@@ -370,7 +370,7 @@ ul {
 }
 
 .modal {
-    /* display: none;  */
+    display: none; 
     position: fixed; 
     z-index: 1; 
     top: 0;
@@ -417,7 +417,7 @@ ul {
     margin-top: 61vh;
 }
 
-.close {
+.closeModal {
     color: #bebebe;
     position: absolute;
     left: 89vw;
@@ -426,8 +426,8 @@ ul {
     font-weight: bold;
 }
   
-.close:hover,
-.close:focus {
+.closeModal:hover,
+.closeModal:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;

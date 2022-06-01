@@ -5,6 +5,7 @@ const card = carousel.querySelector(".card");
 const leftButton = document.querySelector(".slideLeft");
 const rightButton = document.querySelector(".slideRight");
 const slide = document.querySelector("#slide0");
+const modalOriginal = document.querySelector("#modal0");
 
 const carouselWidth = carousel.offsetWidth;
 const cardStyle = card.currentStyle || window.getComputedStyle(card);
@@ -12,6 +13,10 @@ const cardMarginRight = Number(cardStyle.marginRight.match(/\d+/g)[0]);
 const mediaQuerySlider = window.matchMedia("(max-width: 920px)");
 
 const mediaQuery = window.matchMedia("(max-width: 931px)");
+
+const openModalWindow = document.querySelector(".morebtn");
+const modalWindow = document.querySelector("#myModal");
+const closeModalWindow = document.querySelector(".closeModal");
 
 var offset = 0;
 var offsetSmall = 0;
@@ -21,6 +26,7 @@ fetchAgentsJSON().then((agents) => {
   console.log(agents)
   populateDropdownMenu(agents);
   cloningCards(agents.slice(1, 9));
+//   cloningModalWindows(agents.slice(1, 9));
   sliderMoveEvents();
 });
 
@@ -49,6 +55,17 @@ window.onmouseover = function (event) {
     }
   }
 };
+
+
+
+
+
+
+    openModal();
+    closeModal();
+
+
+
 
 
 ////////////////// FUNKCIJE ///////////////////////////
@@ -131,6 +148,28 @@ function cloningCards(agents) {
   }
 }
 
+function cloningModalWindows(agents) {
+    for(let i = 0; i < agents.length; i++) {
+        var cloneModal = modalOriginal.cloneNode(true);
+        cloneModal.id = `modal${i + 1}`;
+        cloneModal.getElementsByClassName("modal-title")[0].innerHTML = `${agents[i].displayName}`;
+        cloneModal.style.cssText =
+          "background-image: linear-gradient(to bottom, transparent,#211E27), url(" +
+          agents[i].bustPortrait +
+          ");";
+      cloneModal.getElementsByClassName("role-pic").src = `${agents[i].role.displayIcon}`;
+     
+
+      cloneModal.getElementsByClassName("ability1").src = `${agents[i].abilities[0].displayIcon}`;
+      cloneModal.getElementsByClassName("ability2").src = `${agents[i].abilities[1].displayIcon}`;
+      cloneModal.getElementsByClassName("ability3").src = `${agents[i].abilities[2].displayIcon}`;
+      cloneModal.getElementsByClassName("ability4").src = `${agents[i].abilities[3].displayIcon}`;
+      slide.after(cloneModal);
+    }
+    // openModal();
+    // closeModal();
+}
+
 function getAllNavElementTitles() {
   let navLinks = document.getElementsByClassName("move-right-navs");
   let allTextContentFromNavLinksContainer = navLinks[0].textContent.split("\n");
@@ -210,4 +249,16 @@ function calculateMaxXVal(maxX, maxXSmall) {
     if (mediaQuerySlider.matches)
         maxXVal = maxXSmall;
     return maxXVal;
+}
+
+function closeModal() {
+    closeModalWindow.addEventListener("click", function () {
+        modalWindow.style.display = "none";
+    });
+}
+
+function openModal() {
+    openModalWindow.addEventListener("click", function () {
+        modalWindow.style.display = "block";
+    });
 }
