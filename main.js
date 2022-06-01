@@ -23,11 +23,14 @@ var offsetSmall = 0;
 
 fetchAgentsJSON().then((agents) => {
   agents = agents.filter((agent) => agent.isPlayableCharacter == true);
-  console.log(agents)
   populateDropdownMenu(agents);
   cloningCards(agents.slice(1, 9));
-//   cloningModalWindows(agents.slice(1, 9));
+  settingOnClickValueOfCards (agents);
   sliderMoveEvents();
+});
+
+fetchWeaponsJSON().then((weapons) => {
+
 });
 
 if (mediaQuery.matches) {
@@ -60,10 +63,7 @@ window.onmouseover = function (event) {
 
 
 
-
-    openModal();
-    closeModal();
-
+  
 
 
 
@@ -74,6 +74,12 @@ async function fetchAgentsJSON() {
   const response = await fetch("https://valorant-api.com/v1/agents");
   const agents = await response.json();
   return agents.data;
+}
+
+async function fetchWeaponsJSON() {
+    const response = await fetch("https://valorant-api.com/v1/weapons");
+    const weapons = await response.json();
+    return weapons.data;
 }
 
 function getAgentPicFromList(agentsList) {
@@ -89,14 +95,19 @@ function agentsDropFunc() {
 }
 
 function openSidebar() {
-  document.getElementById("mySidebar").style.width = "250px";
-  document.getElementById("sidebarButton").style.marginLeft = "0px";
+    if(mediaQuery.matches){
+        document.getElementById("mySidebar").style.width = "60vw";
+    } else {
+        document.getElementById("mySidebar").style.width = "40vw";
+    }
+  
+//   document.getElementById("sidebarButton").style.marginLeft = "0px";
 }
 
 /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
 function closeSidebar() {
   document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("sidebarButton").style.marginLeft = "0";
+//   document.getElementById("sidebarButton").style.marginLeft = "0";
 }
 
 function addNavElements(value) {
@@ -124,7 +135,6 @@ function moveSlideRight(maxXVal) {
   carousel.style.transform = `translateX(${offset}px)`;
 }
 
-//funkcija ne radi kako treba za desno keystroke
 function checkKey(e, maxX) {
   if (e.keyCode === 37) {
     moveSlideLeft(maxX);
@@ -137,6 +147,8 @@ function cloningCards(agents) {
   for (let i = 0; i < agents.length; i++) {
     var clone = slide.cloneNode(true);
     clone.id = `slide${i + 1}`;
+    let setValue = clone.getElementsByClassName("morebtn");
+    setValue[0].value = `${i + 1}`;
     clone.getElementsByClassName(
       "card__title"
     )[0].innerHTML = `${agents[i].displayName}`;
@@ -148,26 +160,11 @@ function cloningCards(agents) {
   }
 }
 
-function cloningModalWindows(agents) {
-    for(let i = 0; i < agents.length; i++) {
-        var cloneModal = modalOriginal.cloneNode(true);
-        cloneModal.id = `modal${i + 1}`;
-        cloneModal.getElementsByClassName("modal-title")[0].innerHTML = `${agents[i].displayName}`;
-        cloneModal.style.cssText =
-          "background-image: linear-gradient(to bottom, transparent,#211E27), url(" +
-          agents[i].bustPortrait +
-          ");";
-      cloneModal.getElementsByClassName("role-pic").src = `${agents[i].role.displayIcon}`;
-     
-
-      cloneModal.getElementsByClassName("ability1").src = `${agents[i].abilities[0].displayIcon}`;
-      cloneModal.getElementsByClassName("ability2").src = `${agents[i].abilities[1].displayIcon}`;
-      cloneModal.getElementsByClassName("ability3").src = `${agents[i].abilities[2].displayIcon}`;
-      cloneModal.getElementsByClassName("ability4").src = `${agents[i].abilities[3].displayIcon}`;
-      slide.after(cloneModal);
-    }
-    // openModal();
-    // closeModal();
+function settingOnClickValueOfCards (agents) {
+    const morebtn = document.getElementsByClassName("morebtn");
+    Array.from(morebtn).forEach(button => {
+        button.onclick = function (){openModal(button.value, agents)};
+    })
 }
 
 function getAllNavElementTitles() {
@@ -257,8 +254,36 @@ function closeModal() {
     });
 }
 
-function openModal() {
-    openModalWindow.addEventListener("click", function () {
+function openModal(val, agents) {
+    for(let i = 0;i < agents.length; i++){
+        if(i == val){
+            changeModalAgent(agents[i]);
+        }
+    } 
+}
+
+function changeModalAgent(agent) {
+    document.getElementsByClassName(
+        "modal-title"
+      )[0].innerHTML = `${agent.displayName}`;
+      document.getElementsByClassName(
+        "role-pic"
+      )[0].src = `${agent.role.displayIcon}`;
+      document.getElementsByClassName(
+        "ability1"
+      )[0].src = `${agent.abilities[0].displayIcon}`;
+      document.getElementsByClassName(
+        "ability2"
+      )[0].src = `${agent.abilities[1].displayIcon}`;
+      document.getElementsByClassName(
+        "ability3"
+      )[0].src = `${agent.abilities[2].displayIcon}`;
+      document.getElementsByClassName(
+        "ability4"
+      )[0].src = `${agent.abilities[3].displayIcon}`;
+      document.querySelector(".modal-content").style.cssText =
+        "background-image: linear-gradient(to bottom, transparent,#211E27), url(" +
+        agent.bustPortrait +
+        ");background-color: #211E27;background-position: center;background-size: 85vw;background-repeat: no-repeat;margin: 8.5vh auto;padding: 2vw;border: 1vw solid #dc3d4b;width: 90vw;height: 90vh;text-align: center;";
         modalWindow.style.display = "block";
-    });
 }

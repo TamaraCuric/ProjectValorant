@@ -62,9 +62,18 @@
     <!-- Sidebar-------------------------------------------------------- -->
 
     <div id="mySidebar" class="sidebar">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()"
-        >&times;</a
-      >
+      <a href="#" class="closebtn" onclick="closeSidebar()"
+        >&times;</a>
+        <div class="sidemenu-container">
+            <div class="sidemenu-card">
+                <div class="weapon-title">ODIN</div>
+                <img src="https://media.valorant-api.com/weapons/63e6c2b6-4a8e-869c-3d4c-e38355226584/displayicon.png" >
+            </div>
+            <div class="sidemenu-card">
+                <div class="weapon-title">ODIN</div>
+                <img src="https://media.valorant-api.com/weapons/63e6c2b6-4a8e-869c-3d4c-e38355226584/displayicon.png" >
+            </div>
+        </div>
     </div>
 
     <<!-- Backgrounf image------------------------------------------------ -->
@@ -81,7 +90,7 @@
                 <div id="slide0" class="card">
                     <div class="card__thumbnail">
                         <span class="card__title">FADE</span>
-                        <button class="morebtn" onclick="">READ MORE</button>
+                        <button class="morebtn" value="0" onclick="openModal(this.value)">READ MORE</button>
                     </div>
                 </div>
             </div>
@@ -109,7 +118,7 @@
                 <img class="ability3"src="https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/abilities/grenade/displayicon.png">
                 <img class="ability4"src="https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/abilities/ultimate/displayicon.png">
             </div>
-          <span class="closeModal">&times;</span>
+          <span class="closeModal" onclick="closeModal();">&times;</span>
         </div>
     </div>
 

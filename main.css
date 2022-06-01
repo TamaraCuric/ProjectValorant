@@ -203,6 +203,26 @@ ul {
     width: 100%;
 }
 
+.sidemenu-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.sidemenu-card{
+    margin-right: 1vw;
+    width: 18vw;
+    height: 30vh; 
+    background-color: #211E27; /* #364966 */
+    background-repeat: no-repeat;
+    background-size: 40vw;
+    background-position: center;
+}
+
+.sidemenu-card img{
+    max-width: 15vw;
+}
+
 /* Background----------------------------------------------------------- */
 
 .background {
@@ -363,11 +383,6 @@ ul {
 
 /* Modal window-------------------------------------------------------- */
 
-#modal0 {
-    background-image: linear-gradient(
-        to bottom, transparent, #211E27
-      ),url("https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/bustportrait.png");
-}
 
 .modal {
     display: none; 
@@ -379,18 +394,6 @@ ul {
     background-color: rgba(0,0,0,0.4);  
 }
   
-.modal-content {
-    background-color: #211E27;
-    background-position: center;
-    background-size: 85vw;
-    background-repeat: no-repeat;
-    margin: 8.5vh auto;
-    padding: 2vw;
-    border: 1vw solid #dc3d4b;
-    width: 90vw;
-    height: 90vh;
-    text-align: center;
-}
 
 .modal-title{
     position: relative;
