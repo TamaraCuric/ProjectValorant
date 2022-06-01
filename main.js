@@ -18,6 +18,7 @@ var offsetSmall = 0;
 
 fetchAgentsJSON().then((agents) => {
   agents = agents.filter((agent) => agent.isPlayableCharacter == true);
+  console.log(agents)
   populateDropdownMenu(agents);
   cloningCards(agents.slice(1, 9));
   sliderMoveEvents();
