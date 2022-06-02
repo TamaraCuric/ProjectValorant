@@ -477,6 +477,20 @@ ul {
 }
 
 @media screen and (max-width: 920px) {
+    .modal-title{
+        top: 70vh; 
+        font-size: 10vw;
+    }
+
+    .modal-role img {
+        max-width: 8vw;
+        top: 58vh;
+    }
+
+    .abbilities img{
+        margin-top: 69vh;
+    }
+
     .card {
         width: 92vw; 
         min-width: 92vw;
