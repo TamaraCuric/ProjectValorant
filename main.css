@@ -225,19 +225,21 @@ ul {
 }
 
 .sidemenu-card img{
-    position: absolute;
+    position: relative;
+    float: right;
+    margin-right: 2vw;
     width: 35vw;
-    left: 12vw;
-    top: 8vw;
+    bottom: 17vh;
 }
 
 .weapon-title{
-    position: absolute;
+    position: relative;
+    float: left;
+    margin-left: 2vw;
     font-family: 'Valorant';
     font-size: 4vw;
     color: #dc3d4b;
-    top: 13.5vw;
-    left: 2vw;
+    top: 12.5vh;
 }
 
 .weapon-type{
@@ -250,22 +252,21 @@ ul {
 }
 
 .price-container{
-    margin: 3vw;
     width: 17vw;
-    height: 14vh; /*24.5*/
+    height: 14vh; 
     background-color: #dc3d4b;
-    position: absolute;
-    bottom: -3vh;
-    left: 24vw;
+    position: relative;
+    float: right;
+    margin-right: 3vw;
+    margin-top: 10vh;
 }
 
 .price{
-    position:absolute;
+    position:relative;
     font-family: 'Valorant';
     font-size: 2vw;
     color: #bebebe;
-    top: 18vh;
-    left: 33vw;
+    top: 4rem;
 }
 
 /* Background----------------------------------------------------------- */
@@ -584,3 +585,68 @@ ul {
         margin-top: 6vh;
     }
 }
+
+@media screen and (min-width: 1200px) {
+
+    .sidemenu-card{
+        height: 30vh;
+    }
+    .sidemenu-card img{
+        bottom: 13.5rem;
+        margin-right: 1vw;
+    }
+
+    .weapon-type{
+        top: 10.5rem;
+    }
+
+    .price-container{
+        height: 18.5vh; 
+        margin-top: 10.5vh;
+    }
+
+    .price{
+        top: 6rem;
+    } 
+
+}
+
+@media screen and (max-width: 915px) {
+    .sidemenu-card img{
+        bottom: 16vh;
+     }
+     
+     .weapon-type{
+         font-size: 3vw;
+         top: 13.5rem;
+     }
+
+     .price-container{
+        width: 17vw;
+        height: 14.5vh; 
+    }
+ 
+     .price{
+         font-size: 3vw;
+     } 
+}
+
+    
+@media screen and (max-width: 415px){
+        
+    .sidemenu-card img{
+       bottom: 15vh;
+    }
+    
+    .weapon-type{
+        font-size: 3vw;
+        top: 8.5rem;
+    }
+
+    .price{
+        font-size: 4vw;
+    } 
+}
+
+
+
