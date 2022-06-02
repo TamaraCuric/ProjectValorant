@@ -85,21 +85,12 @@ window.onmouseover = function (event) {
 
 
 
-function bestRifle(weapons) {
-  weapons.forEach((weapon) => {
-    if (weapon.shopData !== null) {
-      if (weapon.shopData.category === "Rifles") {
-        console.log(weapon.shopData.category);
-        if(weapon.shopData.cost >= 2900 && weapon.weaponStats.firstBulletAccuracy > 0.2){
-            weaponData(weapon);
-        }
-      }
-    }
-  });
-  return (maxPrice, expensiveWeapon, weaponType, weaponImage);
+
+
+if(mediaQuery.matches){
+    let fbPage = document.getElementById("fb-page");
+    fbPage.setAttribute("data-width", "90");
 }
-
-
 
   
 
@@ -340,3 +331,17 @@ function weaponData(weapon) {
     weaponType = weapon.shopData.category;
     weaponImage = weapon.displayIcon;
 }
+
+function bestRifle(weapons) {
+    weapons.forEach((weapon) => {
+      if (weapon.shopData !== null) {
+        if (weapon.shopData.category === "Rifles") {
+          console.log(weapon.shopData.category);
+          if(weapon.shopData.cost >= 2900 && weapon.weaponStats.firstBulletAccuracy > 0.2){
+              weaponData(weapon);
+          }
+        }
+      }
+    });
+    return (maxPrice, expensiveWeapon, weaponType, weaponImage);
+  }

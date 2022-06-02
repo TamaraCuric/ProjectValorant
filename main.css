@@ -269,6 +269,11 @@ ul {
     top: 4rem;
 }
 
+.fb-page{
+    display: flex;
+    justify-content: center;
+}
+
 /* Background----------------------------------------------------------- */
 
 .background {
@@ -626,9 +631,9 @@ ul {
         height: 14.5vh; 
     }
  
-     .price{
+    .price{
          font-size: 3vw;
-     } 
+    }
 }
 
     
