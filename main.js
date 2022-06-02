@@ -43,7 +43,6 @@ fetchAgentsJSON().then((agents) => {
 });
 
 fetchWeaponsJSON().then((weapons) => {
-    console.log(weapons);
     maxPriceWeapon (weapons);
     weaponName1.innerHTML = expensiveWeapon;
     weaponPrice1.innerHTML= new Intl.NumberFormat().format(maxPrice);
@@ -336,7 +335,6 @@ function bestRifle(weapons) {
     weapons.forEach((weapon) => {
       if (weapon.shopData !== null) {
         if (weapon.shopData.category === "Rifles") {
-          console.log(weapon.shopData.category);
           if(weapon.shopData.cost >= 2900 && weapon.weaponStats.firstBulletAccuracy > 0.2){
               weaponData(weapon);
           }
