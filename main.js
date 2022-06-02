@@ -24,6 +24,8 @@ const weaponType1 = document.getElementById("wtype1");
 const weaponImage1 = document.getElementById("wimg1");
 const weaponName2 = document.getElementById("weapon2");
 const weaponPrice2 = document.getElementById("price2");
+const weaponType2 = document.getElementById("wtype2");
+const weaponImage2 = document.getElementById("wimg2");
 
 var offset = 0;
 var offsetSmall = 0;
@@ -47,6 +49,11 @@ fetchWeaponsJSON().then((weapons) => {
     weaponPrice1.innerHTML= new Intl.NumberFormat().format(maxPrice);
     weaponType1.innerHTML = weaponType;
     weaponImage1.src = weaponImage;
+    bestRifle (weapons);
+    weaponName2.innerHTML = expensiveWeapon;
+    weaponPrice2.innerHTML= new Intl.NumberFormat().format(maxPrice);
+    weaponType2.innerHTML = weaponType;
+    weaponImage2.src = weaponImage;
 });
 
 if (mediaQuery.matches) {
@@ -78,7 +85,19 @@ window.onmouseover = function (event) {
 
 
 
-
+function bestRifle(weapons) {
+  weapons.forEach((weapon) => {
+    if (weapon.shopData !== null) {
+      if (weapon.shopData.category === "Rifles") {
+        console.log(weapon.shopData.category);
+        if(weapon.shopData.cost >= 2900 && weapon.weaponStats.firstBulletAccuracy > 0.2){
+            weaponData(weapon);
+        }
+      }
+    }
+  });
+  return (maxPrice, expensiveWeapon, weaponType, weaponImage);
+}
 
 
 
@@ -308,12 +327,16 @@ function maxPriceWeapon (weapons) {
     weapons.forEach(weapon => {
         if (weapon.shopData !== null){
             if (weapon.shopData.cost !== null  && weapon.shopData.cost > maxPrice ) {
-                maxPrice = weapon.shopData.cost;
-                expensiveWeapon = weapon.displayName;
-                weaponType = weapon.shopData.category;
-                weaponImage = weapon.displayIcon;
+                weaponData(weapon);
             }
         }  
     })
     return (maxPrice, expensiveWeapon, weaponType, weaponImage);
+}
+
+function weaponData(weapon) {
+    maxPrice = weapon.shopData.cost;
+    expensiveWeapon = weapon.displayName;
+    weaponType = weapon.shopData.category;
+    weaponImage = weapon.displayIcon;
 }
