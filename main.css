@@ -205,22 +205,67 @@ ul {
 
 .sidemenu-container{
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
-    align-items: center;
+    text-align: center;
+    margin-top: 5vh;
+    margin-left: 2vw;
 }
 
 .sidemenu-card{
-    margin-right: 1vw;
-    width: 18vw;
-    height: 30vh; 
-    background-color: #211E27; /* #364966 */
+    margin: 3vw;
+    width: 50vw;
+    height: 25vh; 
+    background-color: #f1f1f1; /* #364966 */
     background-repeat: no-repeat;
     background-size: 40vw;
     background-position: center;
+    border: 5px solid #dc3d4b;
+    position: relative;
 }
 
 .sidemenu-card img{
-    max-width: 15vw;
+    position: absolute;
+    width: 35vw;
+    left: 12vw;
+    top: 8vw;
+}
+
+.weapon-title{
+    position: absolute;
+    font-family: 'Valorant';
+    font-size: 4vw;
+    color: #dc3d4b;
+    top: 13.5vw;
+    left: 2vw;
+}
+
+.weapon-type{
+    position:absolute;
+    font-family: 'Valorant';
+    font-size: 2vw;
+    color: #818181;
+    top: 16.8vh;
+    left: 3vw;
+}
+
+.price-container{
+    margin: 3vw;
+    width: 17vw;
+    height: 14vh; /*24.5*/
+    background-color: #dc3d4b;
+    position: absolute;
+    bottom: -3vh;
+    left: 24vw;
+}
+
+.price{
+    position:absolute;
+    font-family: 'Valorant';
+    font-size: 2vw;
+    color: #bebebe;
+    top: 18vh;
+    left: 33vw;
 }
 
 /* Background----------------------------------------------------------- */

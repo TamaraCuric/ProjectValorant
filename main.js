@@ -18,8 +18,19 @@ const openModalWindow = document.querySelector(".morebtn");
 const modalWindow = document.querySelector("#myModal");
 const closeModalWindow = document.querySelector(".closeModal");
 
+const weaponName1 = document.getElementById("weapon1");
+const weaponPrice1 = document.getElementById("price1");
+const weaponType1 = document.getElementById("wtype1");
+const weaponImage1 = document.getElementById("wimg1");
+const weaponName2 = document.getElementById("weapon2");
+const weaponPrice2 = document.getElementById("price2");
+
 var offset = 0;
 var offsetSmall = 0;
+var maxPrice = 0;
+var expensiveWeapon = '';
+var weaponType = '';
+var weaponImage = '';
 
 fetchAgentsJSON().then((agents) => {
   agents = agents.filter((agent) => agent.isPlayableCharacter == true);
@@ -30,7 +41,12 @@ fetchAgentsJSON().then((agents) => {
 });
 
 fetchWeaponsJSON().then((weapons) => {
-
+    console.log(weapons);
+    maxPriceWeapon (weapons);
+    weaponName1.innerHTML = expensiveWeapon;
+    weaponPrice1.innerHTML= new Intl.NumberFormat().format(maxPrice);
+    weaponType1.innerHTML = weaponType;
+    weaponImage1.src = weaponImage;
 });
 
 if (mediaQuery.matches) {
@@ -58,6 +74,9 @@ window.onmouseover = function (event) {
     }
   }
 };
+
+
+
 
 
 
@@ -95,11 +114,8 @@ function agentsDropFunc() {
 }
 
 function openSidebar() {
-    if(mediaQuery.matches){
         document.getElementById("mySidebar").style.width = "60vw";
-    } else {
-        document.getElementById("mySidebar").style.width = "40vw";
-    }
+    
   
 //   document.getElementById("sidebarButton").style.marginLeft = "0px";
 }
@@ -286,4 +302,18 @@ function changeModalAgent(agent) {
         agent.bustPortrait +
         ");background-color: #211E27;background-position: center;background-size: 85vw;background-repeat: no-repeat;margin: 8.5vh auto;padding: 2vw;border: 1vw solid #dc3d4b;width: 90vw;height: 90vh;text-align: center;";
         modalWindow.style.display = "block";
+}
+
+function maxPriceWeapon (weapons) {
+    weapons.forEach(weapon => {
+        if (weapon.shopData !== null){
+            if (weapon.shopData.cost !== null  && weapon.shopData.cost > maxPrice ) {
+                maxPrice = weapon.shopData.cost;
+                expensiveWeapon = weapon.displayName;
+                weaponType = weapon.shopData.category;
+                weaponImage = weapon.displayIcon;
+            }
+        }  
+    })
+    return (maxPrice, expensiveWeapon, weaponType, weaponImage);
 }
