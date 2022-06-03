@@ -28,6 +28,14 @@ const weaponPrice2 = document.getElementById("price2");
 const weaponType2 = document.getElementById("wtype2");
 const weaponImage2 = document.getElementById("wimg2");
 
+const sidemenuModalWindow = document.getElementById("sidemenu-modal");
+const weapon1Sidecard = document.getElementById("sidemenu-card-1");
+const weapon2Sidecard = document.getElementById("sidemenu-card-2");
+const modalSidecardTitle = document.getElementsByClassName("modal-weapon-title");
+const modalSidecardType = document.getElementsByClassName("modal-weapon-type");
+const modalSidecardPrice = document.getElementsByClassName("modal-weapon-price");
+const modalSidecardImage = document.getElementsByClassName("weaponIMG");
+
 var offset = 0;
 var offsetSmall = 0;
 var maxPrice = 0;
@@ -89,16 +97,6 @@ if(mediaQuery.matches){
 
 /////////////////////////////////////////////////////////////////////////////
 
-const sidemenuModalWindow = document.getElementById("sidemenu-modal");
-
-const weapon1Sidecard = document.getElementById("sidemenu-card-1");
-const weapon2Sidecard = document.getElementById("sidemenu-card-2");
-
-
-const modalSidecardTitle = document.getElementsByClassName("modal-weapon-title");
-const modalSidecardType = document.getElementsByClassName("modal-weapon-type");
-const modalSidecardPrice = document.getElementsByClassName("modal-weapon-price");
-const modalSidecardImage = document.getElementsByClassName("weaponIMG");
 
 
 
@@ -107,28 +105,8 @@ const modalSidecardImage = document.getElementsByClassName("weaponIMG");
 
 
 
-function openModalForWeapon1(weapons) {
-    weapon1Sidecard.addEventListener("click", function () {
-        maxPriceWeapon(weapons);
-        settingSidemenuModalValues();
-    });
-}
-
-function openModalForWeapon2(weapons) {
-    weapon2Sidecard.addEventListener("click", function () {
-        bestRifle(weapons);
-        settingSidemenuModalValues();
-    });
-}
 
 
-function settingSidemenuModalValues() {
-    modalSidecardTitle[0].innerHTML = expensiveWeapon;
-    modalSidecardPrice[0].innerHTML = new Intl.NumberFormat().format(maxPrice);
-    modalSidecardType[0].innerHTML = weaponType;
-    modalSidecardImage[0].src = weaponImage;
-    sidemenuModalWindow.style.display = "block";
-}
 
 //////////////////////////////////////////////////////////
 
@@ -399,4 +377,27 @@ function sidemenuWeapon1() {
     weaponPrice1.innerHTML = new Intl.NumberFormat().format(maxPrice);
     weaponType1.innerHTML = weaponType;
     weaponImage1.src = weaponImage;
+}
+
+function openModalForWeapon1(weapons) {
+    weapon1Sidecard.addEventListener("click", function () {
+        maxPriceWeapon(weapons);
+        settingSidemenuModalValues();
+    });
+}
+
+function openModalForWeapon2(weapons) {
+    weapon2Sidecard.addEventListener("click", function () {
+        bestRifle(weapons);
+        settingSidemenuModalValues();
+    });
+}
+
+
+function settingSidemenuModalValues() {
+    modalSidecardTitle[0].innerHTML = expensiveWeapon;
+    modalSidecardPrice[0].innerHTML = new Intl.NumberFormat().format(maxPrice);
+    modalSidecardType[0].innerHTML = weaponType;
+    modalSidecardImage[0].src = weaponImage;
+    sidemenuModalWindow.style.display = "block";
 }
