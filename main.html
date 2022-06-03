@@ -60,7 +60,7 @@
     <div id="mySidebar" class="sidebar">
         <a href="#" class="closebtn" onclick="closeSidebar()">&times;</a>
         <div class="sidemenu-container">
-            <div class="sidemenu-card">
+            <div id="sidemenu-card-1" class="sidemenu-card">
                 <div id="weapon1" class="weapon-title"></div>
                 <div id="wtype1" class="weapon-type"></div>
                 <div class="price-container">
@@ -68,7 +68,7 @@
                 </div>
                 <img id="wimg1" src="">
             </div>
-            <div class="sidemenu-card">
+            <div id="sidemenu-card-2" class="sidemenu-card">
                 <div id="weapon2" class="weapon-title"></div>
                 <div id="wtype2" class="weapon-type"></div>
                 <div class="price-container">
@@ -113,10 +113,10 @@
 
         </div>
 
-        <!-- Modal window---------------------------------------------------------- -->
+        <!-- Modal window for slider---------------------------------------------- -->
 
         <div id="myModal" class="modal">
-            <div id="modal0" class="modal-content">
+            <div  class="modal-content">
                 <div class="modal-title"></div>
                 <div class="modal-role">
                     <img class="role-pic" src="">
@@ -130,6 +130,22 @@
                 <span class="closeModal" onclick="closeModal();">&times;</span>
             </div>
         </div>
+
+        <!-- Modal window for sidemenu------------------------------------------- -->
+        <div id="sidemenu-modal" class="modal-sidemenu">
+            <div class="modal-content-sidemenu">
+                <div class="modal-weapon-title"></div>
+                <div class="modal-weapon-type"></div>
+                <div class="modal-weapon-price-container">
+                    <div class="modal-weapon-price"></div>
+                </div>
+                <div>
+                    <img class = "weaponIMG" src="">
+                </div>
+                <span class="closeModal" onclick="closeModalSidemenu();">&times;</span>
+            </div>
+        </div>
+
 
         <!-- Footer-------------------------------------------------------------- -->
 

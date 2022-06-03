@@ -16,7 +16,8 @@ const mediaQuery = window.matchMedia("(max-width: 931px)");
 
 const openModalWindow = document.querySelector(".morebtn");
 const modalWindow = document.querySelector("#myModal");
-const closeModalWindow = document.querySelector(".closeModal");
+const closeModalWindow = document.getElementsByClassName("closeModal");///////////////
+console.log(closeModalWindow);/////////////
 
 const weaponName1 = document.getElementById("weapon1");
 const weaponPrice1 = document.getElementById("price1");
@@ -44,15 +45,11 @@ fetchAgentsJSON().then((agents) => {
 
 fetchWeaponsJSON().then((weapons) => {
     maxPriceWeapon (weapons);
-    weaponName1.innerHTML = expensiveWeapon;
-    weaponPrice1.innerHTML= new Intl.NumberFormat().format(maxPrice);
-    weaponType1.innerHTML = weaponType;
-    weaponImage1.src = weaponImage;
+    sidemenuWeapon1();
+    openModalForWeapon1(weapons);
     bestRifle (weapons);
-    weaponName2.innerHTML = expensiveWeapon;
-    weaponPrice2.innerHTML= new Intl.NumberFormat().format(maxPrice);
-    weaponType2.innerHTML = weaponType;
-    weaponImage2.src = weaponImage;
+    sidemenuWeapon2();
+    openModalForWeapon2(weapons);
 });
 
 if (mediaQuery.matches) {
@@ -60,6 +57,7 @@ if (mediaQuery.matches) {
   navLinkTitles.forEach((title) => {
     addNavElements(title);
   });
+  leavingSpaceforNavLinks();
 }
 
 activateNavLink();
@@ -81,20 +79,70 @@ window.onmouseover = function (event) {
   }
 };
 
-
-
-
-
-
 if(mediaQuery.matches){
     let fbPage = document.getElementById("fb-page");
     fbPage.setAttribute("data-width", "90");
 }
 
-  
 
 
 
+/////////////////////////////////////////////////////////////////////////////
+
+const sidemenuModalWindow = document.getElementById("sidemenu-modal");
+
+const weapon1Sidecard = document.getElementById("sidemenu-card-1");
+const weapon2Sidecard = document.getElementById("sidemenu-card-2");
+
+
+const modalSidecardTitle = document.getElementsByClassName("modal-weapon-title");
+const modalSidecardType = document.getElementsByClassName("modal-weapon-type");
+const modalSidecardPrice = document.getElementsByClassName("modal-weapon-price");
+const modalSidecardImage = document.getElementsByClassName("weaponIMG");
+
+
+
+
+
+
+
+
+function openModalForWeapon1(weapons) {
+    weapon1Sidecard.addEventListener("click", function () {
+        maxPriceWeapon(weapons);
+        settingSidemenuModalValues();
+    });
+}
+
+function openModalForWeapon2(weapons) {
+    weapon2Sidecard.addEventListener("click", function () {
+        bestRifle(weapons);
+        settingSidemenuModalValues();
+    });
+}
+
+
+function settingSidemenuModalValues() {
+    modalSidecardTitle[0].innerHTML = expensiveWeapon;
+    modalSidecardPrice[0].innerHTML = new Intl.NumberFormat().format(maxPrice);
+    modalSidecardType[0].innerHTML = weaponType;
+    modalSidecardImage[0].src = weaponImage;
+    sidemenuModalWindow.style.display = "block";
+}
+
+//////////////////////////////////////////////////////////
+
+
+// the function doesn't work check it tmrw
+function leavingSpaceforNavLinks() {
+    const createdNavLinks = document.querySelectorAll("#mySidebar a");
+    const sidemenuCards = document.getElementsByClassName("sidemenu-container");
+    const arrayOfCards = Array.from(sidemenuCards);
+    arrayOfCards.forEach(card => {
+        console.log(card);
+        // card.after(createdNavLinks)
+    })
+}
 
 ////////////////// FUNKCIJE ///////////////////////////
 
@@ -110,22 +158,12 @@ async function fetchWeaponsJSON() {
     return weapons.data;
 }
 
-function getAgentPicFromList(agentsList) {
-  return agentsList.map((agent) => agent.bustPortrait);
-}
-
-function getAgentNamesFromAgentList(agentsList) {
-  return agentsList.map((agent) => agent.displayName);
-}
-
 function agentsDropFunc() {
   document.getElementById("agentsDrop").classList.toggle("show");
 }
 
 function openSidebar() {
         document.getElementById("mySidebar").style.width = "60vw";
-    
-  
 //   document.getElementById("sidebarButton").style.marginLeft = "0px";
 }
 
@@ -274,7 +312,12 @@ function calculateMaxXVal(maxX, maxXSmall) {
 }
 
 function closeModal() {
-    closeModalWindow.addEventListener("click", function () {
+    closeModalWindow[0].addEventListener("click", function () {
+        modalWindow.style.display = "none";
+    });
+}
+function closeModalSidemenu() { ////////////////////////////////////check this it doesnt work
+    closeModalWindow[1].addEventListener("click", function () {
         modalWindow.style.display = "none";
     });
 }
@@ -343,3 +386,17 @@ function bestRifle(weapons) {
     });
     return (maxPrice, expensiveWeapon, weaponType, weaponImage);
   }
+
+  function sidemenuWeapon2() {
+    weaponName2.innerHTML = expensiveWeapon;
+    weaponPrice2.innerHTML = new Intl.NumberFormat().format(maxPrice);
+    weaponType2.innerHTML = weaponType;
+    weaponImage2.src = weaponImage;
+}
+
+function sidemenuWeapon1() {
+    weaponName1.innerHTML = expensiveWeapon;
+    weaponPrice1.innerHTML = new Intl.NumberFormat().format(maxPrice);
+    weaponType1.innerHTML = weaponType;
+    weaponImage1.src = weaponImage;
+}

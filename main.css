@@ -432,7 +432,7 @@ ul {
     transition: 0.5s;
 }
 
-/* Modal window-------------------------------------------------------- */
+/* Modal window for slider--------------------------------------- */
 
 
 .modal {
@@ -486,6 +486,78 @@ ul {
     text-decoration: none;
     cursor: pointer;
 }
+
+/* Modal window for sidebar--------------------------------------------- */
+
+.modal-sidemenu {
+    display: none; 
+    position: fixed; 
+    z-index: 100; 
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);  
+}
+
+.modal-content-sidemenu{
+    background-color: #f1f1f1;
+    background-position: center;
+    background-size: 85vw;
+    margin: 8.5vh auto;
+    padding: 2vw;
+    border: 1vw solid #dc3d4b;
+    width: 90vw;
+    height: 90vh;
+    text-align: center;
+}
+
+.modal-weapon-title{
+    position: relative;
+    float: left;
+    margin-left: 0.3rem;
+    font-family: 'Valorant';
+    font-size: 8vw;
+    color: #dc3d4b;
+    top: 43.5vh;
+}
+
+.modal-weapon-type{
+    position:absolute;
+    float: left;
+    font-family: 'Valorant';
+    font-size: 5vw;
+    color: #818181;
+    top: 62.8vh;
+    left: 6rem;
+}
+
+.modal-content-sidemenu img {
+    position: relative;
+    float: right;
+    margin-right: -1vw;
+    width: 65vw;
+    bottom: 53vh;
+}
+
+.modal-weapon-price-container{
+    width: 35vw;
+    height: 48vh; 
+    background-color: #dc3d4b;
+    position: relative;
+    float: right;
+    margin-right: 3vw;
+    margin-top: 33vh;
+}
+
+.modal-weapon-price{
+    position:relative;
+    font-family: 'Valorant';
+    font-size: 4vw;
+    color: #bebebe;
+    top: 15rem;
+}
+
+
 
 /* Footer-------------------------------------------------------------- */
 
@@ -542,7 +614,6 @@ ul {
   #footer-email {
     width: 250px;
     height: 40px;
-    /* border-radius: 4px; */
     outline: none;
     border: none;
     padding-left: 0.5rem;
