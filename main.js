@@ -16,8 +16,8 @@ const mediaQuery = window.matchMedia("(max-width: 931px)");
 
 const openModalWindow = document.querySelector(".morebtn");
 const modalWindow = document.querySelector("#myModal");
-const closeModalWindow = document.getElementsByClassName("closeModal");///////////////
-console.log(closeModalWindow);/////////////
+const modalWindSidemenu = document.querySelector("#sidemenu-modal");
+const closeModalWindow = document.getElementsByClassName("closeModal");
 
 const weaponName1 = document.getElementById("weapon1");
 const weaponPrice1 = document.getElementById("price1");
@@ -60,15 +60,26 @@ fetchWeaponsJSON().then((weapons) => {
     openModalForWeapon2(weapons);
 });
 
-if (mediaQuery.matches) {
-  let navLinkTitles = getAllNavElementTitles();
-  navLinkTitles.forEach((title) => {
-    addNavElements(title);
-  });
-  leavingSpaceforNavLinks();
-}
+fetchTiersJSON().then((tiers) => {
+
+
+})
 
 activateNavLink();
+
+var dropdowns = document.getElementsByClassName("dropdown-content");
+var navLinks = document.querySelectorAll(".move-right-navs a");
+var cardholder = document.getElementById("cardholder");
+
+if(mediaQuery.matches) {
+    navLinks.forEach(link => {
+        let anchor = document.createElement("a");
+        anchor.innerHTML = link.innerHTML;
+        anchor.href = link.href;
+        cardholder.appendChild(anchor);
+    })
+}
+
 
 window.onmouseover = function (event) {
   if (
@@ -76,7 +87,6 @@ window.onmouseover = function (event) {
     !event.target.matches(".dropdown-content") &&
     !event.target.matches(".dropdown-content a")
   ) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
     var i;
     for (i = 0; i < dropdowns.length; i++) {
       var openDropdown = dropdowns[i];
@@ -87,20 +97,14 @@ window.onmouseover = function (event) {
   }
 };
 
-if(mediaQuery.matches){
-    let fbPage = document.getElementById("fb-page");
-    fbPage.setAttribute("data-width", "90");
-}
+// if(mediaQuery.matches){
+//     let fbPage = document.getElementById("fb-page");
+//     fbPage.setAttribute("data-width", "90");
+// }
 
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-
-
-fetchTiersJSON().then((tiers) => {
-    console.log(tiers);
-})
 
 
 
@@ -113,16 +117,7 @@ fetchTiersJSON().then((tiers) => {
 //////////////////////////////////////////////////////////
 
 
-// the function doesn't work check it tmrw
-function leavingSpaceforNavLinks() {
-    const createdNavLinks = document.querySelectorAll("#mySidebar a");
-    const sidemenuCards = document.getElementsByClassName("sidemenu-container");
-    const arrayOfCards = Array.from(sidemenuCards);
-    arrayOfCards.forEach(card => {
-        console.log(card);
-        // card.after(createdNavLinks)
-    })
-}
+
 
 ////////////////// FUNKCIJE ///////////////////////////
 
@@ -149,22 +144,14 @@ function agentsDropFunc() {
 }
 
 function openSidebar() {
-        document.getElementById("mySidebar").style.width = "60vw";
-//   document.getElementById("sidebarButton").style.marginLeft = "0px";
+        document.getElementById("mySidebar").style.width = "40vw";
 }
 
-/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+
 function closeSidebar() {
   document.getElementById("mySidebar").style.width = "0";
-//   document.getElementById("sidebarButton").style.marginLeft = "0";
 }
 
-function addNavElements(value) {
-  let sidebar = document.getElementById("mySidebar");
-  let anchor = document.createElement("a");
-  anchor.innerHTML = value;
-  sidebar.appendChild(anchor);
-}
 
 function moveSlideLeft(maxXVal) {
   if (offset !== 0) {
@@ -298,14 +285,10 @@ function calculateMaxXVal(maxX, maxXSmall) {
 }
 
 function closeModal() {
-    closeModalWindow[0].addEventListener("click", function () {
         modalWindow.style.display = "none";
-    });
 }
-function closeModalSidemenu() { ////////////////////////////////////check this it doesnt work
-    closeModalWindow[1].addEventListener("click", function () {
-        modalWindow.style.display = "none";
-    });
+function closeModalSidemenu() { 
+    modalWindSidemenu.style.display = "none";
 }
 
 function openModal(val, agents) {
