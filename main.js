@@ -98,7 +98,9 @@ if(mediaQuery.matches){
 /////////////////////////////////////////////////////////////////////////////
 
 
-
+fetchTiersJSON().then((tiers) => {
+    console.log(tiers);
+})
 
 
 
@@ -134,6 +136,12 @@ async function fetchWeaponsJSON() {
     const response = await fetch("https://valorant-api.com/v1/weapons");
     const weapons = await response.json();
     return weapons.data;
+}
+
+async function fetchTiersJSON() {
+    const response = await fetch("https://valorant-api.com/v1/competitivetiers");
+    const tiers = await response.json();
+    return tiers.data;
 }
 
 function agentsDropFunc() {
