@@ -788,6 +788,24 @@ ul {
         margin-top: 6vh;
     }
 }
+@media screen and (min-width: 915px) and (max-width: 1200px){
+    .modal-weapon-title{
+        top: 40.5vh;
+    }
+    
+    .modal-weapon-type{
+        top: 62.8vh;
+        left: 7rem;
+    }
+    .modal-content-sidemenu img {
+        bottom: 57vh;
+    }
+
+    .modal-weapon-price-container{
+        height: 51vh;
+        margin-top: 34.5vh;
+    }
+}
 
 @media screen and (min-width: 1200px) {
 
@@ -834,7 +852,6 @@ ul {
         margin-top: 34.5vh;
     }
     
-
 }
 
 @media screen and (max-width: 915px) {
