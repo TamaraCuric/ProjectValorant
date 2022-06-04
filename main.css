@@ -208,7 +208,7 @@ ul {
     width: 100%;
 }
 
-.sidemenu-container {
+/* .sidemenu-container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -276,7 +276,7 @@ ul {
 .fb-page {
     display: flex;
     justify-content: center;
-}
+} */
 
 /* Background----------------------------------------------------------- */
 
@@ -569,7 +569,7 @@ ul {
 /* Sorted tiers--------------------------------------------------------- */
 
 .sorted-tiers {
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
     background-color: #211E27;
     top: 0;
@@ -596,6 +596,7 @@ ul {
     padding: 0 1vw 6vw 1vw;
     margin: 2rem 1rem 2rem 1rem;
     justify-content: space-around;
+    overflow: hidden;
     /* flex: 30%;
     max-width: 30%;
     padding: 0 4px; */
@@ -615,7 +616,6 @@ ul {
     outline: solid 3px #111;
     outline-offset: -12px;
     margin: 0.8rem;
-
 }
 
 .tier-name {
@@ -630,8 +630,22 @@ ul {
 @media screen and(max-width: 920px) {
     .tier-card {
         flex: 100%;
+        flex-direction: column;
     }
 }
+
+#loadMore{
+    font-family: 'Valorant';
+    font-size: 2vw;
+    padding: 0.5rem;
+    position: absolute;
+    bottom: 2rem;
+    left: 42vw;
+    background-color: #f1f1f1;
+    color: #111;
+    border: 3px solid #111;
+}
+
 
 /* Footer-------------------------------------------------------------- */
 

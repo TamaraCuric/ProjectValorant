@@ -36,6 +36,15 @@ const modalSidecardType = document.getElementsByClassName("modal-weapon-type");
 const modalSidecardPrice = document.getElementsByClassName("modal-weapon-price");
 const modalSidecardImage = document.getElementsByClassName("weaponIMG");
 
+const tiersCardContainer = document.getElementById("tier-container");
+const tierCard = document.querySelector(".tier-card");
+const tierName = document.querySelector(".tier-name");
+const loadMore = document.getElementById("loadMore");
+const maxTiers = 6;
+const loadTiers = 3;
+const hiddenClass = "tier-card";
+
+
 var offset = 0;
 var offsetSmall = 0;
 var maxPrice = 0;
@@ -52,17 +61,32 @@ fetchAgentsJSON().then((agents) => {
 });
 
 fetchWeaponsJSON().then((weapons) => {
-    maxPriceWeapon (weapons);
-    sidemenuWeapon1();
-    openModalForWeapon1(weapons);
-    bestRifle (weapons);
-    sidemenuWeapon2();
-    openModalForWeapon2(weapons);
+    // maxPriceWeapon (weapons);
+    // sidemenuWeapon1();
+    // openModalForWeapon1(weapons);
+    // bestRifle (weapons);
+    // sidemenuWeapon2();
+    // openModalForWeapon2(weapons);
 });
 
 fetchTiersJSON().then((tiers) => {
+    makeTierCards(tiers[0].tiers.slice(3, -1));
+    const hiddenTiers = Array.from(document.querySelectorAll(".tier-card"));
 
-
+    var tierCardsArray = Array.from(tiersCardContainer.querySelectorAll(".tier-card"));
+    tierCardsArray.forEach(function (card, index) {
+        if(index > maxTiers - 1) {
+            card.classList.add(hiddenClass);
+        }
+    });
+    loadMore.addEventListener("click", function () {
+        [].forEach.call(document.querySelectorAll("." + "hiddenClass"), function (card, index) {
+            if(index < loadTiers) {
+                card.classList.remove(hiddenClass);
+            }
+        })
+    })
+    
 })
 
 activateNavLink();
@@ -114,7 +138,18 @@ window.onmouseover = function (event) {
 
 
 
-//////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -325,70 +360,81 @@ function changeModalAgent(agent) {
         modalWindow.style.display = "block";
 }
 
-function maxPriceWeapon (weapons) {
-    weapons.forEach(weapon => {
-        if (weapon.shopData !== null){
-            if (weapon.shopData.cost !== null  && weapon.shopData.cost > maxPrice ) {
-                weaponData(weapon);
-            }
-        }  
+function makeTierCards(tiers) {
+    tiers.forEach(tier => {
+        var tierClone = tierCard.cloneNode(true);
+        tierClone.getElementsByClassName("tier-name")[0].innerHTML = tier.tierName;
+        tierClone.style.cssText = "flex: 30%;position: relative;background-image: url("+
+        tier.largeIcon + ");background-color: #dc3d4b;height: 30vh;background-repeat: no-repeat;background-size: 14rem;background-position-y: 1vh;background-position-x: center;border: 3px solid #111;outline: solid 3px #111;outline-offset: -12px;margin: 0.8rem;"
+        tierCard.after(tierClone);
     })
-    return (maxPrice, expensiveWeapon, weaponType, weaponImage);
-}
-
-function weaponData(weapon) {
-    maxPrice = weapon.shopData.cost;
-    expensiveWeapon = weapon.displayName;
-    weaponType = weapon.shopData.category;
-    weaponImage = weapon.displayIcon;
-}
-
-function bestRifle(weapons) {
-    weapons.forEach((weapon) => {
-      if (weapon.shopData !== null) {
-        if (weapon.shopData.category === "Rifles") {
-          if(weapon.shopData.cost >= 2900 && weapon.weaponStats.firstBulletAccuracy > 0.2){
-              weaponData(weapon);
-          }
-        }
-      }
-    });
-    return (maxPrice, expensiveWeapon, weaponType, weaponImage);
-  }
-
-  function sidemenuWeapon2() {
-    weaponName2.innerHTML = expensiveWeapon;
-    weaponPrice2.innerHTML = new Intl.NumberFormat().format(maxPrice);
-    weaponType2.innerHTML = weaponType;
-    weaponImage2.src = weaponImage;
-}
-
-function sidemenuWeapon1() {
-    weaponName1.innerHTML = expensiveWeapon;
-    weaponPrice1.innerHTML = new Intl.NumberFormat().format(maxPrice);
-    weaponType1.innerHTML = weaponType;
-    weaponImage1.src = weaponImage;
-}
-
-function openModalForWeapon1(weapons) {
-    weapon1Sidecard.addEventListener("click", function () {
-        maxPriceWeapon(weapons);
-        settingSidemenuModalValues();
-    });
-}
-
-function openModalForWeapon2(weapons) {
-    weapon2Sidecard.addEventListener("click", function () {
-        bestRifle(weapons);
-        settingSidemenuModalValues();
-    });
 }
 
 
-function settingSidemenuModalValues() {
-    modalSidecardTitle[0].innerHTML = expensiveWeapon;
-    modalSidecardPrice[0].innerHTML = new Intl.NumberFormat().format(maxPrice);
-    modalSidecardType[0].innerHTML = weaponType;
-    modalSidecardImage[0].src = weaponImage;
-    sidemenuModalWindow.style.display = "block";
-}
+// function maxPriceWeapon (weapons) {
+//     weapons.forEach(weapon => {
+//         if (weapon.shopData !== null){
+//             if (weapon.shopData.cost !== null  && weapon.shopData.cost > maxPrice ) {
+//                 weaponData(weapon);
+//             }
+//         }  
+//     })
+//     return (maxPrice, expensiveWeapon, weaponType, weaponImage);
+// }
+
+// function weaponData(weapon) {
+//     maxPrice = weapon.shopData.cost;
+//     expensiveWeapon = weapon.displayName;
+//     weaponType = weapon.shopData.category;
+//     weaponImage = weapon.displayIcon;
+// }
+
+// function bestRifle(weapons) {
+//     weapons.forEach((weapon) => {
+//       if (weapon.shopData !== null) {
+//         if (weapon.shopData.category === "Rifles") {
+//           if(weapon.shopData.cost >= 2900 && weapon.weaponStats.firstBulletAccuracy > 0.2){
+//               weaponData(weapon);
+//           }
+//         }
+//       }
+//     });
+//     return (maxPrice, expensiveWeapon, weaponType, weaponImage);
+//   }
+
+// function sidemenuWeapon2() {
+//     weaponName2.innerHTML = expensiveWeapon;
+//     weaponPrice2.innerHTML = new Intl.NumberFormat().format(maxPrice);
+//     weaponType2.innerHTML = weaponType;
+//     weaponImage2.src = weaponImage;
+// }
+
+// function sidemenuWeapon1() {
+//     weaponName1.innerHTML = expensiveWeapon;
+//     weaponPrice1.innerHTML = new Intl.NumberFormat().format(maxPrice);
+//     weaponType1.innerHTML = weaponType;
+//     weaponImage1.src = weaponImage;
+// }
+
+// function openModalForWeapon1(weapons) {
+//     weapon1Sidecard.addEventListener("click", function () {
+//         maxPriceWeapon(weapons);
+//         settingSidemenuModalValues();
+//     });
+// }
+
+// function openModalForWeapon2(weapons) {
+//     weapon2Sidecard.addEventListener("click", function () {
+//         bestRifle(weapons);
+//         settingSidemenuModalValues();
+//     });
+// }
+
+
+// function settingSidemenuModalValues() {
+//     modalSidecardTitle[0].innerHTML = expensiveWeapon;
+//     modalSidecardPrice[0].innerHTML = new Intl.NumberFormat().format(maxPrice);
+//     modalSidecardType[0].innerHTML = weaponType;
+//     modalSidecardImage[0].src = weaponImage;
+//     sidemenuModalWindow.style.display = "block";
+// }
