@@ -12,7 +12,7 @@ const cardStyle = card.currentStyle || window.getComputedStyle(card);
 const cardMarginRight = Number(cardStyle.marginRight.match(/\d+/g)[0]);
 const mediaQuerySlider = window.matchMedia("(max-width: 920px)");
 
-const mediaQuery = window.matchMedia("(max-width: 931px)");
+
 
 const openModalWindow = document.querySelector(".morebtn");
 const modalWindow = document.querySelector("#myModal");
@@ -40,9 +40,9 @@ const tiersCardContainer = document.getElementById("tier-container");
 const tierCard = document.querySelector(".tier-card");
 const tierName = document.querySelector(".tier-name");
 const loadMore = document.getElementById("loadMore");
-const maxTiers = 6;
-const loadTiers = 3;
-const hiddenClass = "tier-card";
+const maxTiers = 7;
+const loadTiers = 6;
+const hiddenClass = "hidden";
 
 
 var offset = 0;
@@ -52,13 +52,106 @@ var expensiveWeapon = '';
 var weaponType = '';
 var weaponImage = '';
 
+
+
+// Header--------------------------------------------
+
+const mediaQuery = window.matchMedia("(max-width: 931px)");
+var navLinks = document.querySelectorAll(".move-right-navs a");
+var dropdowns = document.getElementsByClassName("dropdown-content");
+var cardholder = document.getElementById("cardholder");
+
+
+
 fetchAgentsJSON().then((agents) => {
-  agents = agents.filter((agent) => agent.isPlayableCharacter == true);
-  populateDropdownMenu(agents);
-  cloningCards(agents.slice(1, 9));
-  settingOnClickValueOfCards (agents);
-  sliderMoveEvents();
+    agents = agents.filter((agent) => agent.isPlayableCharacter == true);
+    populateDropdownMenu(agents);
+    cloningCards(agents.slice(1, 9));
+    settingOnClickValueOfCards (agents);
+    sliderMoveEvents();
 });
+
+activateNavLink();
+
+async function fetchAgentsJSON() {
+    const response = await fetch("https://valorant-api.com/v1/agents");
+    const agents = await response.json();
+    return agents.data;
+}
+
+function populateDropdownMenu(agents) {
+    agents.forEach((agent) => {
+      const dropdown = document.getElementById("agentsDrop");
+      let anchor = document.createElement("a");
+      anchor.innerHTML = agent.displayName;
+      anchor.href = "/agents-page.html?agentName=" + agent.displayName.toLowerCase();
+      dropdown.appendChild(anchor); 
+    });
+}
+
+function activateNavLink() {
+    const activePage = window.location.pathname;
+    document.querySelectorAll("#navList li a").forEach((link) => {
+      if (link.href.includes(activePage)) {
+        link.classList.add("active");
+      }
+    });
+}
+
+
+function getAllNavElementTitles() {
+    let navLinks = document.getElementsByClassName("move-right-navs");
+    let allTextContentFromNavLinksContainer = navLinks[0].textContent.split("\n");
+    let navTitles = [];
+    allTextContentFromNavLinksContainer.forEach((line) => {
+      if (line.trim() != "") navTitles.push(line.trim());
+    });
+    //last line catches icon as well so we pop it off
+    navTitles.pop();
+    return navTitles;
+}
+
+window.onmouseover = function (event) {
+    if (
+      !event.target.matches(".dropbtn") &&
+      !event.target.matches(".dropdown-content") &&
+      !event.target.matches(".dropdown-content a")
+    ) {
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains("show")) {
+          openDropdown.classList.remove("show");
+        }
+      }
+    }
+};
+
+if(mediaQuery.matches) {
+    navLinks.forEach(link => {
+        let anchor = document.createElement("a");
+        anchor.innerHTML = link.innerHTML;
+        anchor.href = link.href;
+        cardholder.appendChild(anchor);
+    })
+}
+
+function agentsDropFunc() {
+    document.getElementById("agentsDrop").classList.toggle("show");
+}
+
+function openSidebar() {
+    document.getElementById("mySidebar").style.width = "40vw";
+}
+
+function closeSidebar() {
+  document.getElementById("mySidebar").style.width = "0";
+}
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
 
 fetchWeaponsJSON().then((weapons) => {
     // maxPriceWeapon (weapons);
@@ -71,60 +164,27 @@ fetchWeaponsJSON().then((weapons) => {
 
 fetchTiersJSON().then((tiers) => {
     makeTierCards(tiers[0].tiers.slice(3, -1));
-    const hiddenTiers = Array.from(document.querySelectorAll(".tier-card"));
 
     var tierCardsArray = Array.from(tiersCardContainer.querySelectorAll(".tier-card"));
+    const hiddenTiers = Array.from(document.querySelectorAll(".hidden"));
+
     tierCardsArray.forEach(function (card, index) {
         if(index > maxTiers - 1) {
             card.classList.add(hiddenClass);
         }
     });
     loadMore.addEventListener("click", function () {
-        [].forEach.call(document.querySelectorAll("." + "hiddenClass"), function (card, index) {
+        [].forEach.call(document.querySelectorAll("." + hiddenClass), function (card, index) {
             if(index < loadTiers) {
                 card.classList.remove(hiddenClass);
+            }
+            if (document.querySelectorAll("." + hiddenClass).length === 0) {
+                loadMore.style.display = "none";
             }
         })
     })
     
 })
-
-activateNavLink();
-
-var dropdowns = document.getElementsByClassName("dropdown-content");
-var navLinks = document.querySelectorAll(".move-right-navs a");
-var cardholder = document.getElementById("cardholder");
-
-if(mediaQuery.matches) {
-    navLinks.forEach(link => {
-        let anchor = document.createElement("a");
-        anchor.innerHTML = link.innerHTML;
-        anchor.href = link.href;
-        cardholder.appendChild(anchor);
-    })
-}
-
-
-window.onmouseover = function (event) {
-  if (
-    !event.target.matches(".dropbtn") &&
-    !event.target.matches(".dropdown-content") &&
-    !event.target.matches(".dropdown-content a")
-  ) {
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains("show")) {
-        openDropdown.classList.remove("show");
-      }
-    }
-  }
-};
-
-// if(mediaQuery.matches){
-//     let fbPage = document.getElementById("fb-page");
-//     fbPage.setAttribute("data-width", "90");
-// }
 
 
 
@@ -156,11 +216,7 @@ window.onmouseover = function (event) {
 
 ////////////////// FUNKCIJE ///////////////////////////
 
-async function fetchAgentsJSON() {
-  const response = await fetch("https://valorant-api.com/v1/agents");
-  const agents = await response.json();
-  return agents.data;
-}
+
 
 async function fetchWeaponsJSON() {
     const response = await fetch("https://valorant-api.com/v1/weapons");
@@ -174,19 +230,30 @@ async function fetchTiersJSON() {
     return tiers.data;
 }
 
-function agentsDropFunc() {
-  document.getElementById("agentsDrop").classList.toggle("show");
+
+function cloningCards(agents) {
+    for (let i = 0; i < agents.length; i++) {
+      var clone = slide.cloneNode(true);
+      clone.id = `slide${i + 1}`;
+      let setValue = clone.getElementsByClassName("morebtn");
+      setValue[0].value = `${i + 1}`;
+      clone.getElementsByClassName(
+        "card__title"
+      )[0].innerHTML = `${agents[i].displayName}`;
+      clone.style.cssText =
+        "background-image: linear-gradient(to bottom, transparent,#211E27), url(" +
+        agents[i].bustPortrait +
+        ");";
+      slide.after(clone);
+    }
 }
 
-function openSidebar() {
-        document.getElementById("mySidebar").style.width = "40vw";
+function settingOnClickValueOfCards (agents) {
+    const morebtn = document.getElementsByClassName("morebtn");
+    Array.from(morebtn).forEach(button => {
+        button.onclick = function (){openModal(button.value, agents)};
+    })
 }
-
-
-function closeSidebar() {
-  document.getElementById("mySidebar").style.width = "0";
-}
-
 
 function moveSlideLeft(maxXVal) {
   if (offset !== 0) {
@@ -214,64 +281,19 @@ function checkKey(e, maxX) {
   }
 }
 
-function cloningCards(agents) {
-  for (let i = 0; i < agents.length; i++) {
-    var clone = slide.cloneNode(true);
-    clone.id = `slide${i + 1}`;
-    let setValue = clone.getElementsByClassName("morebtn");
-    setValue[0].value = `${i + 1}`;
-    clone.getElementsByClassName(
-      "card__title"
-    )[0].innerHTML = `${agents[i].displayName}`;
-    clone.style.cssText =
-      "background-image: linear-gradient(to bottom, transparent,#211E27), url(" +
-      agents[i].bustPortrait +
-      ");";
-    slide.after(clone);
-  }
-}
 
-function settingOnClickValueOfCards (agents) {
-    const morebtn = document.getElementsByClassName("morebtn");
-    Array.from(morebtn).forEach(button => {
-        button.onclick = function (){openModal(button.value, agents)};
-    })
-}
 
-function getAllNavElementTitles() {
-  let navLinks = document.getElementsByClassName("move-right-navs");
-  let allTextContentFromNavLinksContainer = navLinks[0].textContent.split("\n");
-  let navTitles = [];
 
-  allTextContentFromNavLinksContainer.forEach((line) => {
-    if (line.trim() != "") navTitles.push(line.trim());
-  });
-  //last line catches icon as well so we pop it off
-  navTitles.pop();
-  return navTitles;
-}
 
-function activateNavLink() {
-  const activePage = window.location.pathname;
-  document.querySelectorAll("#navList li a").forEach((link) => {
-    if (link.href.includes(activePage)) {
-      link.classList.add("active");
-    }
-  });
-}
+
+
+
 
 function numOfCardsCreated() {
   return carousel.querySelectorAll(".card").length;
 }
 
-function populateDropdownMenu(agents) {
-  agents.forEach((agent) => {
-    const dropdown = document.getElementById("agentsDrop");
-    let anchor = document.createElement("a");
-    anchor.innerHTML = agent.displayName;
-    dropdown.appendChild(anchor);
-  });
-}
+
 
 function maxXCooridante(cardCount) {
   return -(
@@ -368,8 +390,29 @@ function makeTierCards(tiers) {
         tier.largeIcon + ");background-color: #dc3d4b;height: 30vh;background-repeat: no-repeat;background-size: 14rem;background-position-y: 1vh;background-position-x: center;border: 3px solid #111;outline: solid 3px #111;outline-offset: -12px;margin: 0.8rem;"
         tierCard.after(tierClone);
     })
+    let firstRankCard = document.getElementsByClassName("tier-card")[0];
+    firstRankCard.style.cssText = "flex: 100%"
 }
 
+// Footer----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
 
 // function maxPriceWeapon (weapons) {
 //     weapons.forEach(weapon => {
@@ -437,4 +480,9 @@ function makeTierCards(tiers) {
 //     modalSidecardType[0].innerHTML = weaponType;
 //     modalSidecardImage[0].src = weaponImage;
 //     sidemenuModalWindow.style.display = "block";
+// }
+
+// if(mediaQuery.matches){
+//     let fbPage = document.getElementById("fb-page");
+//     fbPage.setAttribute("data-width", "90");
 // }

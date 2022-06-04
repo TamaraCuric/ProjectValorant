@@ -21,7 +21,6 @@ body {
     min-width: 350px;
 }
 
-/* check if this is ok, if it doesnt cause problems leave */
 *::before,
 *::after {
     box-sizing: inherit;
@@ -115,6 +114,26 @@ ul {
     font-size: 3rem;
 }
 
+
+.openbtn {
+    font-size: 1.4rem;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 0.8rem;
+    padding-bottom: 1.23rem;
+    padding-right: 1.375rem;
+    padding-left: 1.375rem;
+    border: none;
+}
+
+.openbtn:hover {
+    background-color: #444;
+    height: 100%;
+    width: 100%;
+}
+
+
 .show {
     display: block;
 }
@@ -125,8 +144,27 @@ ul {
 }
 
 
+@media only screen and (max-width: 931px) {
+    .logo-nav {
+        width: 2.3rem;
+        margin-top: 15px;
+        margin-left: 5px;
+    }
 
-/* Scrollbar on dropdown----------------------------- */
+    .contact-nav,
+    .home-nav,
+    .agents-nav,
+    .news-nav,
+    .about-nav {
+        display: none;
+    }
+
+    .openbtn {
+        padding: 0.9rem;
+    }
+}
+
+/* Scrollbar on dropdown(header also)-------------------- */
 
 ::-webkit-scrollbar {
     width: 12px;
@@ -149,7 +187,7 @@ ul {
     background: rgba(255, 0, 0, 0.8);
 }
 
-/* Sidebar---------------------------------------- */
+/* Sidemenu(header also)-------------------------------- */
 
 
 .sidebar {
@@ -189,94 +227,16 @@ ul {
     margin-right: 50px;
 }
 
+@media screen and (max-height: 450px) {
+    .sidebar {
+        padding-top: 15px;
+    }
 
-.openbtn {
-    font-size: 1.4rem;
-    cursor: pointer;
-    background-color: #111;
-    color: white;
-    padding: 0.8rem;
-    padding-bottom: 1.23rem;
-    padding-right: 1.375rem;
-    padding-left: 1.375rem;
-    border: none;
+    .sidebar a {
+        font-size: 18px;
+    }
 }
 
-.openbtn:hover {
-    background-color: #444;
-    height: 100%;
-    width: 100%;
-}
-
-/* .sidemenu-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    text-align: center;
-    margin-top: 5vh;
-    margin-left: 2vw;
-}
-
-.sidemenu-card {
-    margin: 3vw;
-    width: 50vw;
-    height: 25vh;
-    background-color: #f1f1f1;
-    background-repeat: no-repeat;
-    background-position: center;
-    border: 5px solid #dc3d4b;
-    position: relative;
-}
-
-.sidemenu-card img {
-    position: relative;
-    float: right;
-    margin-right: 0.4rem;
-    width: 35vw;
-    bottom: 10.5rem;
-}
-
-.weapon-title {
-    position: relative;
-    float: left;
-    margin-left: 1rem;
-    font-family: 'Valorant';
-    font-size: 4vw;
-    color: #dc3d4b;
-    top: 8rem;
-}
-
-.weapon-type {
-    position: absolute;
-    font-family: 'Valorant';
-    font-size: 2vw;
-    color: #818181;
-    top: 10.5rem;
-    left: 1.6rem;
-}
-
-.price-container {
-    width: 11rem;
-    height: 9rem;
-    background-color: #dc3d4b;
-    position: relative;
-    float: right;
-    margin-right: 2rem;
-    margin-top: 6rem;
-}
-
-.price {
-    position: relative;
-    font-family: 'Valorant';
-    font-size: 1.5rem;
-    color: #bebebe;
-    top: 5rem;
-}
-
-.fb-page {
-    display: flex;
-    justify-content: center;
-} */
 
 /* Background----------------------------------------------------------- */
 
@@ -627,12 +587,11 @@ ul {
     margin-top: 15rem;
 }
 
-@media screen and(max-width: 920px) {
-    .tier-card {
-        flex: 100%;
-        flex-direction: column;
-    }
+.hidden {
+    display: none;
 }
+
+
 
 #loadMore{
     font-family: 'Valorant';
@@ -774,37 +733,9 @@ ul {
 
 /* Media queries ----------------------------------------------------- */
 
-@media only screen and (max-width: 931px) {
-    .logo-nav {
-        width: 2.3rem;
-        margin-top: 15px;
-        margin-left: 5px;
-    }
 
-    .contact-nav,
-    .home-nav,
-    .agents-nav,
-    .news-nav,
-    .about-nav {
-        display: none;
-    }
 
-    .openbtn {
-        padding: 0.9rem;
-    }
-}
 
-;
-
-@media screen and (max-height: 450px) {
-    .sidebar {
-        padding-top: 15px;
-    }
-
-    .sidebar a {
-        font-size: 18px;
-    }
-}
 
 @media screen and (min-width: 1520px) {
     .card {
@@ -1103,3 +1034,79 @@ ul {
         font-size: 6vw;
     }
 }
+
+@media screen and (max-width:920px) {
+    .tier-card {
+        flex: 100% !important;
+    }
+}
+
+/* .sidemenu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 5vh;
+    margin-left: 2vw;
+}
+
+.sidemenu-card {
+    margin: 3vw;
+    width: 50vw;
+    height: 25vh;
+    background-color: #f1f1f1;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 5px solid #dc3d4b;
+    position: relative;
+}
+
+.sidemenu-card img {
+    position: relative;
+    float: right;
+    margin-right: 0.4rem;
+    width: 35vw;
+    bottom: 10.5rem;
+}
+
+.weapon-title {
+    position: relative;
+    float: left;
+    margin-left: 1rem;
+    font-family: 'Valorant';
+    font-size: 4vw;
+    color: #dc3d4b;
+    top: 8rem;
+}
+
+.weapon-type {
+    position: absolute;
+    font-family: 'Valorant';
+    font-size: 2vw;
+    color: #818181;
+    top: 10.5rem;
+    left: 1.6rem;
+}
+
+.price-container {
+    width: 11rem;
+    height: 9rem;
+    background-color: #dc3d4b;
+    position: relative;
+    float: right;
+    margin-right: 2rem;
+    margin-top: 6rem;
+}
+
+.price {
+    position: relative;
+    font-family: 'Valorant';
+    font-size: 1.5rem;
+    color: #bebebe;
+    top: 5rem;
+}
+
+.fb-page {
+    display: flex;
+    justify-content: center;
+} */
