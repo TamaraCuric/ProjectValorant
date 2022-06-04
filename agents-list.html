@@ -8,64 +8,44 @@
     <title>Valorant Contact Us</title>
     <link href="http://fonts.cdnfonts.com/css/valorant" rel="stylesheet">
     <link rel="stylesheet" href="agents-list.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
     <!-- Input form with background -->
     <div class="home-background-image">
+    <div class="search-box">
+        <div class="search-container">
+            <form class="example" >
+                <input type="text" id="text-input" placeholder="Search.." name="search">
+                <button id="search-btn" type="button"><i class="fa fa-search"></i></button>
+
+                <input type="checkbox" id="test1" value="">
+                <label for="test1" id="test1-label"  class="checkbox-inline">Duelist</label>
+
+                <input type="checkbox" id="test2" value="">
+                <label for="test2" id="test2-label" class="checkbox-inline">Controller</label>
+
+                <input type="checkbox" id="test3" value="">
+                <label id="test3-label" for="test3" class="checkbox-inline">Initiator</label>
+                
+                <input type="checkbox" id="test4" value="">
+                <label id="test4-label"for="test4" class="checkbox-inline">Sentinel</label>
+
+            </form>
+        </div>
+    </div>
         <!-- Form and its wrapper -->
         <div class="container">
 
             <div class="column">
-
-
-                <div class="agent-card" id="card0">
-                    <img class="agent-picture" src="https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/bustportrait.png">
-                    <h2 class="agent-name">FADE</h2>
-
-                    <div class="abilityButtons">
-                            <img class="abilityIcon" id="ability1" src="https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/abilities/ability1/displayicon.png">
-                            <img class="abilityIcon" id="ability2" src="https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/abilities/ability2/displayicon.png">
-                            <img class="abilityIcon" id="ability3" src="https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/abilities/grenade/displayicon.png">
-                            <img class="abilityIcon" id="ability4" src="https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/abilities/ultimate/displayicon.png">
-                    </div>
-
-                </div>
-
-
-
-
             </div>
 
             <div class="column">
-
-                
-                <div class="agent-card">
-                    <img class="agent-picture" id="ability1" src="https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/bustportrait.png">
-                    <h2 class="agent-name">FADE</h2>
-
-                    <div class="abilityButtons">
-                            <img class="abilityIcon" id="ability1" src="https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/abilities/ability1/displayicon.png">
-                            <img class="abilityIcon" id="ability2" src="https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/abilities/ability2/displayicon.png">
-                            <img class="abilityIcon" id="ability3" src="https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/abilities/grenade/displayicon.png">
-                            <img class="abilityIcon" id="ability4" src="https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/abilities/ultimate/displayicon.png">
-                    </div>
-
-                </div>
-
-
-            </div>
+            </div> 
             
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
-              </div>
+            <div id="pager" class="pagination">
+            </div>
 
 
 
