@@ -17,6 +17,7 @@ body {
     min-width: 350px;
 }
 
+/* Result Section */
 .home-background-image {
     position: relative;
     background-attachment: fixed;
@@ -91,6 +92,7 @@ body {
     margin-bottom: 0.2vh;
 }
 
+/* Pager */
 .pagination {
     display: flex;
     justify-content: space-around;
@@ -131,6 +133,7 @@ body {
     }
 }
 
+/* Search Container */
 .search-box {
     display: flex;
     justify-content: space-around;
@@ -150,7 +153,6 @@ form.example input[type=text] {
     background: #f1f1f1;
 }
 
-/* Style the submit button */
 form.example button {
     box-sizing: border-box;
     float: left;
@@ -170,7 +172,6 @@ form.example button:hover {
     box-shadow: inset 0 0 3px #000000;
 }
 
-/* Clear floats */
 form.example::after {
     box-sizing: border-box;
     content: "";

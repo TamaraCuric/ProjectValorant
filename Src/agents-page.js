@@ -1,3 +1,4 @@
+//Get query string to determine current selected agent
 var qs = (function(a) {
     if (a == "") return {};
     var b = {};
@@ -212,7 +213,6 @@ function populateDropdownMenu(agents) {
 }
 
 function activateNavLink() {
-    const activePage = window.location.pathname;
     let link = document.getElementById('agent-link')
     link.classList.add("active");
 }

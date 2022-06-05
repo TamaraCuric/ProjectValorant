@@ -17,6 +17,7 @@ body {
   min-width: 350px;
 }
 
+/* Agent Picture and title */
 .agentBackSplash {
   width: 100%;
   background-image: url('/Resources/ValBackground.png');
@@ -49,6 +50,7 @@ body {
   z-index: 300;
 }
 
+/* Abilities section */
 .abilities {
   position: relative;
 }

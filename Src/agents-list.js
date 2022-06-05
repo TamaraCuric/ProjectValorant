@@ -1,14 +1,11 @@
-var mq = window.matchMedia("(max-width: 1100px)")
-
+var mediaQueryCards = window.matchMedia("(max-width: 1100px)")
 var searchBtn = document.getElementById('search-btn');
-var foundAgents = []
-var currentPage = 1
-
-const mediaQuery = window.matchMedia("(max-width: 931px)");
+const mediaQueryNavLinks = window.matchMedia("(max-width: 931px)");
 var navLinks = document.querySelectorAll(".move-right-navs a");
 var dropdowns = document.getElementsByClassName("dropdown-content");
 var cardholder = document.getElementById("cardholder");
-
+var foundAgents = []
+var currentPage = 1
 
 fetchAgentsJSON().then(agents => {
     agents = removeDuplicateSova(agents)
@@ -16,6 +13,7 @@ fetchAgentsJSON().then(agents => {
     foundAgents = agents;
     sortAgentsByAlphabet(agents)
     searchBtn.onclick = function() {
+        currentPage = 1;
         deleteCards();
         removePager()
         let categories = getActiveSearchParams()
@@ -29,6 +27,7 @@ fetchAgentsJSON().then(agents => {
 });
 
 activateNavLink();
+
 window.onmouseover = function (event) {
     if (
       !event.target.matches(".dropbtn") &&
@@ -45,7 +44,7 @@ window.onmouseover = function (event) {
     }
 };
 
-if(mediaQuery.matches) {
+if(mediaQueryNavLinks.matches) {
     navLinks.forEach(link => {
         let anchor = document.createElement("a");
         anchor.innerHTML = link.innerHTML;
@@ -53,14 +52,12 @@ if(mediaQuery.matches) {
         cardholder.appendChild(anchor);
     })
 }
-function populateDropdownMenu(agents) {
-    agents.forEach((agent) => {
-      const dropdown = document.getElementById("agentsDrop");
-      let anchor = document.createElement("a");
-      anchor.innerHTML = agent.displayName;
-      anchor.href = "/agents-page.html?agentName=" + agent.displayName.toLowerCase();
-      dropdown.appendChild(anchor); 
-    });
+
+
+async function fetchAgentsJSON() {
+    const response = await fetch('https://valorant-api.com/v1/agents');
+    const agents = await response.json()
+    return agents.data;
 }
 
 function activateNavLink() {
@@ -72,125 +69,71 @@ function activateNavLink() {
     });
 }
 
-function agentsDropFunc() {
-    document.getElementById("agentsDrop").classList.toggle("show");
+function removeDuplicateSova(agents){
+    return agents.filter(agent=>{return agent.isPlayableCharacter==true})
 }
 
-function openSidebar() {
-    document.getElementById("mySidebar").style.width = "40vw";
+function populateDropdownMenu(agents) {
+    agents.forEach((agent) => {
+      const dropdown = document.getElementById("agentsDrop");
+      let anchor = document.createElement("a");
+      anchor.innerHTML = agent.displayName;
+      anchor.href = "/agents-page.html?agentName=" + agent.displayName.toLowerCase();
+      dropdown.appendChild(anchor); 
+    });
 }
-
-function closeSidebar() {
-  document.getElementById("mySidebar").style.width = "0";
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function sortAgentsByAlphabet(agents){
     agents.sort((a, b) => a.displayName.localeCompare(b.displayName))
 }
 
-function removeDuplicateSova(agents){
-    return agents.filter(agent=>{return agent.isPlayableCharacter==true})
-}
+function createCards(agents) {
+    let leftColumn = document.getElementsByClassName('column')[0];
+    let rightColumn = document.getElementsByClassName('column')[1];
+    for(let cardCounter = 0; cardCounter < agents.length; cardCounter++ ){
+        let agent = agents[cardCounter] 
+        if(cardCounter == 4)
+            break
+        let card = document.createElement('div');
+        card.onclick = function () {
+            location.href = "/agents-page.html?agentName=" + agent.displayName.toLowerCase();
+        };
+        card.classList.add('agent-card')
+        card.id = 'card' + cardCounter
 
-function filterAgentsByRole(role, agents){
-    return agents.filter(agent=>{
-        return agent.role.displayName == role
-    })
-}
+        let agentImg = document.createElement('img');
+        agentImg.src = agent.bustPortrait;
+        agentImg.classList.add("agent-picture");
 
-function searchAgents(categories, searchWord, agents){
-    let searchableAgents = []
-    if(categories.length != 0){
-        categories.forEach(category=>{
-            searchableAgents = searchableAgents.concat(filterAgentsByRole(category, agents))
-        })
-    }
-    else
-        searchableAgents = agents
-    return searchForAgentByName(searchWord, searchableAgents)
-}
+        let agentName = document.createElement('h2');
+        agentName.classList.add('agent-name')
+        agentName.innerHTML = agent.displayName
 
-function searchForAgentByName(searchWord, agents){
-    return agents.filter(agent=>{
-        return agent.displayName.toLowerCase().includes(searchWord.toLowerCase())
-    })
-}
-
-async function fetchAgentsJSON() {
-    const response = await fetch('https://valorant-api.com/v1/agents');
-    const agents = await response.json()
-    return agents.data;
-}
-function getSearchWord(){
-    var inputs = document.getElementById("text-input");
-    return inputs.value
-
-}
-
-function getActiveSearchParams(){
-    var inputs = document.getElementsByTagName("input");
-    var idsOfChecked = []
-    var categories = []
-    for(var i = 0; i < inputs.length; i++) {
-        if(inputs[i].type == "checkbox" && inputs[i].checked == true) {
-            idsOfChecked.push(inputs[i].id)
-        }  
-    }
-    idsOfChecked.forEach(id=>{
-        let label = document.getElementById(id+"-label");
-        categories.push(label.innerHTML)
-    })
-    return categories;
-
-}
-
-function deleteCards(){
-    let allAgentCards = document.getElementsByClassName("agent-card");
-    for(var i = allAgentCards.length - 1; i >= 0; i--) {
-        allAgentCards[i].remove();
-    }
-}
-
-function setPagerActive(linkNumber){
-    let pagerLinks = document.getElementsByClassName("pager-link");
-    for(var i = 0; i < pagerLinks.length ; i++) {
-        pagerLinks[i].classList.remove('active')
-    }
-    pagerLinks[linkNumber].classList.add('active')
-
-}
-
-function removePager(){
-    let pager = document.getElementsByClassName('pager-link');
-    for(var i = pager.length - 1; i >= 0; i--) {
-        pager[i].remove();
-    }
+        let abilityIcons = document.createElement('div');
+        abilityIcons.classList.add('abilityButtons');
+        for (let i = 0; i < 4; i++) {
+            let icon = document.createElement('img');
+            icon.classList.add('abilityIcon');
+            icon.id = 'ability' + (i + 1);
+            icon.src = agent.abilities[i].displayIcon;
+            abilityIcons.appendChild(icon);
+        }
+        card.appendChild(agentImg);
+        card.appendChild(agentName);
+        card.appendChild(abilityIcons);
+        if (mediaQueryCards.matches) {
+            if (cardCounter == 0 || cardCounter == 1)
+                leftColumn.appendChild(card)
+            else
+                rightColumn.appendChild(card)
+        }
+        else {
+            if (cardCounter == 0 || cardCounter == 2)
+                leftColumn.appendChild(card)
+            else
+                rightColumn.appendChild(card)
+        }
+    };
 }
 
 function createPager(agentCount){
@@ -235,51 +178,84 @@ function createPager(agentCount){
     pagerContainer.appendChild(anchorRight)
 }
 
-function createCards(agents) {
-    let leftColumn = document.getElementsByClassName('column')[0];
-    let rightColumn = document.getElementsByClassName('column')[1];
-    for(let cardCounter = 0; cardCounter < agents.length; cardCounter++ ){
-        let agent = agents[cardCounter] 
-        if(cardCounter == 4)
-            break
-        let card = document.createElement('div');
-        card.onclick = function () {
-            location.href = "/agents-page.html?agentName=" + agent.displayName.toLowerCase();
-        };
-        card.classList.add('agent-card')
-        card.id = 'card' + cardCounter
+function deleteCards(){
+    let allAgentCards = document.getElementsByClassName("agent-card");
+    for(var i = allAgentCards.length - 1; i >= 0; i--) {
+        allAgentCards[i].remove();
+    }
+}
 
-        let agentImg = document.createElement('img');
-        agentImg.src = agent.bustPortrait;
-        agentImg.classList.add("agent-picture");
+function removePager(){
+    let pager = document.getElementsByClassName('pager-link');
+    for(var i = pager.length - 1; i >= 0; i--) {
+        pager[i].remove();
+    }
+}
 
-        let agentName = document.createElement('h2');
-        agentName.classList.add('agent-name')
-        agentName.innerHTML = agent.displayName
+function setPagerActive(linkNumber){
+    let pagerLinks = document.getElementsByClassName("pager-link");
+    for(var i = 0; i < pagerLinks.length ; i++) {
+        pagerLinks[i].classList.remove('active')
+    }
+    pagerLinks[linkNumber].classList.add('active')
 
-        let abilityIcons = document.createElement('div');
-        abilityIcons.classList.add('abilityButtons');
-        for (let i = 0; i < 4; i++) {
-            let icon = document.createElement('img');
-            icon.classList.add('abilityIcon');
-            icon.id = 'ability' + (i + 1);
-            icon.src = agent.abilities[i].displayIcon;
-            abilityIcons.appendChild(icon);
-        }
-        card.appendChild(agentImg);
-        card.appendChild(agentName);
-        card.appendChild(abilityIcons);
-        if (mq.matches) {
-            if (cardCounter == 0 || cardCounter == 1)
-                leftColumn.appendChild(card)
-            else
-                rightColumn.appendChild(card)
-        }
-        else {
-            if (cardCounter == 0 || cardCounter == 2)
-                leftColumn.appendChild(card)
-            else
-                rightColumn.appendChild(card)
-        }
-    };
+}
+
+function getActiveSearchParams(){
+    var inputs = document.getElementsByTagName("input");
+    var idsOfChecked = []
+    var categories = []
+    for(var i = 0; i < inputs.length; i++) {
+        if(inputs[i].type == "checkbox" && inputs[i].checked == true) {
+            idsOfChecked.push(inputs[i].id)
+        }  
+    }
+    idsOfChecked.forEach(id=>{
+        let label = document.getElementById(id+"-label");
+        categories.push(label.innerHTML)
+    })
+    return categories;
+
+}
+
+function getSearchWord(){
+    var inputs = document.getElementById("text-input");
+    return inputs.value
+
+}
+
+function searchAgents(categories, searchWord, agents){
+    let searchableAgents = []
+    if(categories.length != 0){
+        categories.forEach(category=>{
+            searchableAgents = searchableAgents.concat(filterAgentsByRole(category, agents))
+        })
+    }
+    else
+        searchableAgents = agents
+    return searchForAgentByName(searchWord, searchableAgents)
+}
+
+function filterAgentsByRole(role, agents){
+    return agents.filter(agent=>{
+        return agent.role.displayName == role
+    })
+}
+
+function searchForAgentByName(searchWord, agents){
+    return agents.filter(agent=>{
+        return agent.displayName.toLowerCase().includes(searchWord.toLowerCase())
+    })
+}
+
+function agentsDropFunc() {
+    document.getElementById("agentsDrop").classList.toggle("show");
+}
+
+function openSidebar() {
+    document.getElementById("mySidebar").style.width = "40vw";
+}
+
+function closeSidebar() {
+  document.getElementById("mySidebar").style.width = "0";
 }

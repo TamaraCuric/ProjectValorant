@@ -37,6 +37,7 @@ if(mediaQuery.matches) {
 
 
 
+
 async function fetchAgentsJSON() {
     const response = await fetch("https://valorant-api.com/v1/agents");
     const agents = await response.json();
