@@ -15,6 +15,7 @@ const tierCard = document.querySelector(".tier-card");
 const tierName = document.querySelector(".tier-name");
 const loadMore = document.getElementById("loadMore");
 const mediaQuery = window.matchMedia("(max-width: 931px)");
+const mediaQuery420 = window.matchMedia("(max-width: 420px)");
 const maxTiers = 7;
 const loadTiers = 6;
 const hiddenClass = "hidden";
@@ -171,8 +172,16 @@ function makeTierCards(tiers) {
   tiers.forEach(tier => {
       var tierClone = tierCard.cloneNode(true);
       tierClone.getElementsByClassName("tier-name")[0].innerHTML = tier.tierName;
-      tierClone.style.cssText = "flex: 30%;position: relative;background-image: url("+
-      tier.largeIcon + ");background-color: #dc3d4b;height: 30vh;background-repeat: no-repeat;background-size: 14rem;background-position-y: 1vh;background-position-x: center;border: 3px solid #111;outline: solid 3px #111;outline-offset: -12px;margin: 0.8rem;"
+      tierClone.style.cssText = "background-image: url("+tier.largeIcon + ")";
+      //   tier.largeIcon
+      // if(mediaQuery420.matches) {
+      //   tierClone.style.cssText = "flex: 30%;position: relative;background-image: url("+
+      //   tier.largeIcon + ");background-color: #dc3d4b;height: 30vh;background-repeat: no-repeat;background-size: 8rem;background-position-y: 2vh;background-position-x: center;border: 3px solid #111;outline: solid 3px #111;outline-offset: -12px;margin: 0.8rem;"
+      // }
+      // else{
+      //   tierClone.style.cssText = "flex: 30%;position: relative;background-image: url("+
+      //   tier.largeIcon + ");background-color: #dc3d4b;height: 30vh;background-repeat: no-repeat;background-size: 14rem;background-position-y: 1vh;background-position-x: center;border: 3px solid #111;outline: solid 3px #111;outline-offset: -12px;margin: 0.8rem;"
+      // }
       tierCard.after(tierClone);
   })
   let firstRankCard = document.getElementsByClassName("tier-card")[0];
@@ -264,7 +273,7 @@ function changeModalAgent(agent) {
     document.querySelector(".modal-content").style.cssText =
       "background-image: linear-gradient(to bottom, transparent,#211E27), url(" +
       agent.bustPortrait +
-      ");background-color: #211E27;background-position: center;background-size: 85vw;background-repeat: no-repeat;margin: 8.5vh auto;padding: 2vw;border: 1vw solid #dc3d4b;width: 90vw;height: 90vh;text-align: center;";
+      ");background-color: #211E27;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 8.5vh auto;padding: 2vw;border: 1vw solid #dc3d4b;width: 90vw;height: 90vh;text-align: center;";
       modalWindow.style.display = "block";
 }
 
