@@ -9,14 +9,9 @@
     <link href="http://fonts.cdnfonts.com/css/valorant" rel="stylesheet">
     <link rel="stylesheet" href="Styles/agents-list.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 
 <body>
-    <!-- Input form with background -->
-    <div class="home-background-image">
-
-
     <!-- Header----------------------------------------------------- -->
     <div class="header-container">
         <nav>
@@ -26,12 +21,13 @@
                         <img class="logo-nav" src="valorant_logo-freelogovectors.net_.png" />
                     </li>
                 </div>
-    
+
                 <div class="move-right-navs">
                     <li><a class="home-nav" href="/main.html">HOME</a></li>
                     <div class="dropdown">
                         <li>
-                            <a onmouseover="agentsDropFunc()" class="agents-nav dropbtn" href="/agents-list.html">AGENTS</a>
+                            <a onmouseover="agentsDropFunc()" class="agents-nav dropbtn"
+                                href="/agents-list.html">AGENTS</a>
                         </li>
                         <div id="agentsDrop" class="dropdown-content"></div>
                     </div>
@@ -57,74 +53,47 @@
         <a href="#" class="closebtn" onclick="closeSidebar()">&times;</a>
         <div id="cardholder">
         </div>
-    
     </div>
-    <div class="background"></div>
-    <div class="slidebar">
-        <div id="slidebar">
-            <p class="slidebarTitile">AGENTS</p>
-        </div>
-        <div class="carouselContainer">
-            <div class="carouselSlides">
-                <div id="slide0" class="card">
-                    <div class="card__thumbnail">
-                        <span class="card__title">FADE</span>
-                        <button class="morebtn" value="0" onclick="openModal(this.value)">READ MORE</button>
-                    </div>
-                </div>
+
+    <!-- Background and Columns -->
+    <div class="home-background-image">
+
+        <div class="search-box">
+            <div class="search-container">
+                <form class="example">
+                    <input type="text" id="text-input" placeholder="Search.." name="search">
+                    <button id="search-btn" type="button"><i class="fa fa-search"></i></button>
+
+                    <input type="checkbox" id="checkBox1" value="">
+                    <label for="checkBox1" id="checkBox1-label" class="checkbox-inline">Duelist</label>
+
+                    <input type="checkbox" id="checkBox2" value="">
+                    <label for="checkBox2" id="checkBox2-label" class="checkbox-inline">Controller</label>
+
+                    <input type="checkbox" id="checkBox3" value="">
+                    <label for="checkBox3" id="checkBox3-label" class="checkbox-inline">Initiator</label>
+
+                    <input type="checkbox" id="checkBox4" value="">
+                    <label for="checkBox4" id="checkBox4-label" class="checkbox-inline">Sentinel</label>
+
+                </form>
             </div>
-    
-            <div class="button-wrapper">
-                <button class="slideLeft">&#8249;</button>
-                <button class="slideRight">&#8250;</button>
-            </div>
-    
         </div>
-    
-    </div>
-    <!------------------------------------------------------- -->
 
-
-
-    <div class="search-box">
-        <div class="search-container">
-            <form class="example" >
-                <input type="text" id="text-input" placeholder="Search.." name="search">
-                <button id="search-btn" type="button"><i class="fa fa-search"></i></button>
-
-                <input type="checkbox" id="checkBox1" value="">
-                <label for="checkBox1" id="checkBox1-label"  class="checkbox-inline">Duelist</label>
-
-                <input type="checkbox" id="checkBox2" value="">
-                <label for="checkBox2" id="checkBox2-label" class="checkbox-inline">Controller</label>
-
-                <input type="checkbox" id="checkBox3" value="">
-                <label for="checkBox3" id="checkBox3-label" class="checkbox-inline">Initiator</label>
-                
-                <input type="checkbox" id="checkBox4" value="">
-                <label for="checkBox4" id="checkBox4-label" class="checkbox-inline">Sentinel</label>
-
-            </form>
-        </div>
-    </div>
         <!-- Form and its wrapper -->
         <div class="container">
-
             <div class="column">
             </div>
 
             <div class="column">
-            </div> 
-            
+            </div>
+
             <div id="pager" class="pagination">
             </div>
-
-
-
         </div>
     </div>
 
-
+    <!-- Footer  -->
     <div class="footer-container">
         <div class="footer">
             <div class="white-logo">
@@ -146,17 +115,9 @@
                 </span>
             </div>
         </div>
-
         <div class="signiture">@2022 All rigths reserved</div>
-
     </div>
 
-
-
-
 </body>
-
 <script src="Src/agents-list.js"></script>
-
-
 </html>
