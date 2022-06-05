@@ -12,8 +12,44 @@ var qs = (function(a) {
     return b;
 })(window.location.search.substr(1).split('&'));
 
+const mediaQuery = window.matchMedia("(max-width: 931px)");
+var navLinks = document.querySelectorAll(".move-right-navs a");
+var dropdowns = document.getElementsByClassName("dropdown-content");
+var cardholder = document.getElementById("cardholder");
 var agent = 'placeholder'
-fetchAgentsJSON().then(agents => loadAgent(agents, qs.agentName));
+
+fetchAgentsJSON().then(agents => {
+    agents = agents.filter((agent) => agent.isPlayableCharacter == true);
+    loadAgent(agents, qs.agentName)
+    populateDropdownMenu(agents);
+});
+
+activateNavLink();
+
+window.onmouseover = function (event) {
+    if (
+      !event.target.matches(".dropbtn") &&
+      !event.target.matches(".dropdown-content") &&
+      !event.target.matches(".dropdown-content a")
+    ) {
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains("show")) {
+          openDropdown.classList.remove("show");
+        }
+      }
+    }
+};
+
+if(mediaQuery.matches) {
+    navLinks.forEach(link => {
+        let anchor = document.createElement("a");
+        anchor.innerHTML = link.innerHTML;
+        anchor.href = link.href;
+        cardholder.appendChild(anchor);
+    })
+}
 
 var button1 = document.getElementById('ability1');
 var button2 = document.getElementById('ability2');
@@ -56,6 +92,11 @@ async function fetchAgentsJSON() {
     const response = await fetch('https://valorant-api.com/v1/agents');
     const agents = await response.json()
     return agents.data;
+}
+
+function changeAgentLinkTitle(agent){
+    let agentLink = document.getElementById('agent-link')
+    agentLink.innerHTML = agent.displayName.toUpperCase()
 }
 
 function agentSortAbilities(agent) {
@@ -136,15 +177,19 @@ function correctAgentByName(agent, agentName){
 
 
 function loadAgent(agents, agentName){
-    agent = agents.find((agen)=>correctAgentByName(agen, agentName));
+    agent = agents.find((agentInArray)=>correctAgentByName(agentInArray, agentName));
+    if(agent == null)
+        agent = agents[0]
     agentSortAbilities(agent)
-    updateElementImageSource('id1', agent.fullPortraitV2)
+    updateElementImageSource('agentPicture', agent.fullPortraitV2)
     updateElementTextValue('agentNameTitleScreen', agent.displayName)
     agentDescription(agent)
     loadAbilityIcons(agent)
     abilityDescription(agent, 1)
     agentBackstory(agent)
     showAbility(1)
+    button1.classList.add('selected');
+    changeAgentLinkTitle(agent)
 }
 
 
@@ -153,4 +198,33 @@ function showAbility(abilityId) {
     videoElem.src = "Resources/" + agent.displayName.toLowerCase().replace('/', '') + abilityId + '.mp4';
     videoElem.load();
     abilityDescription(agent, abilityId)
+}
+
+
+function populateDropdownMenu(agents) {
+    agents.forEach((agent) => {
+      const dropdown = document.getElementById("agentsDrop");
+      let anchor = document.createElement("a");
+      anchor.innerHTML = agent.displayName;
+      anchor.href = "/agents-page.html?agentName=" + agent.displayName.toLowerCase();
+      dropdown.appendChild(anchor); 
+    });
+}
+
+function activateNavLink() {
+    const activePage = window.location.pathname;
+    let link = document.getElementById('agent-link')
+    link.classList.add("active");
+}
+
+function agentsDropFunc() {
+    document.getElementById("agentsDrop").classList.toggle("show");
+}
+
+function openSidebar() {
+    document.getElementById("mySidebar").style.width = "40vw";
+}
+
+function closeSidebar() {
+  document.getElementById("mySidebar").style.width = "0";
 }

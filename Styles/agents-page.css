@@ -9,7 +9,7 @@ html {
   font-family: quicksand;
   height: 100%;
   scroll-behavior: smooth;
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 
 body {
@@ -19,7 +19,7 @@ body {
 
 .agentBackSplash {
   width: 100%;
-  background-image: url('ValBackground.png');
+  background-image: url('/Resources/ValBackground.png');
   position: relative;
   background-attachment: fixed;
   background-position: center;
@@ -30,29 +30,24 @@ body {
   margin-bottom: 10vh;
 }
 
-#id1 {
+#agentPicture {
   height: 80vh;
   position: relative;
   left: 50%;
   transform: translate(-50%, 0%);
-  top:7vh;
+  top: 7vh;
 }
 
-.agentNameScreen{
-  position:absolute;
-  font-size:2.5rem;
+.agentNameScreen {
+  position: absolute;
+  font-size: 2.5rem;
   font-family: 'Valorant', sans-serif;
-  color:#fff;
-  top:10%;
-  left:50%;
-  transform:translate(-50%, 10%);
-  z-index:300;
+  color: #fff;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 10%);
+  z-index: 300;
 }
-
-
-
-
-
 
 .abilities {
   position: relative;
@@ -81,7 +76,7 @@ body {
   transition: all 0.3s ease-out;
 }
 
-.abilityIcon.selected{
+.abilityIcon.selected {
   filter: invert(0%);
   background-color: #ff4655;
 }
@@ -96,32 +91,22 @@ body {
   display: flex;
   justify-content: space-around;
   background-color: #0e1921;
-
-  /* max-height:60vh; */
 }
-
 
 .abilityVid {
   margin-bottom: 8%;
   margin-top: 2%;
   box-shadow: rgba(255, 70, 85, 0.4) 5px 5px, rgba(255, 70, 85, 0.3) 10px 10px;
-  /*, rgba(255, 70, 85, 0.2) 15px 15px, rgba(255, 70, 85, 0.1) 20px 20px
-  */
   width: 80%;
   height: auto;
 }
 
-
-
 @media (min-width:1100px) {
-  
-  .abilityVid{
+  .abilityVid {
     height: 70vh;
     width: auto;
   }
-
-} 
-
+}
 
 .abilityDescriptionContainer {
   background-color: #0e1921;
@@ -149,7 +134,7 @@ body {
   color: #fff;
   font-size: 1rem;
   text-align: justify;
-  
+
   margin-left: 10%;
   margin-right: 10%;
 
@@ -168,42 +153,36 @@ body {
 }
 
 .agentDescription {
-  margin-top:3%;
-  margin-left:10%;
-  margin-right:10%;
+  margin-top: 3%;
+  margin-left: 10%;
+  margin-right: 10%;
 
 }
 
 .agentNameTitle {
-  font-size:1.4rem;
+  font-size: 1.4rem;
   font-family: 'Valorant', sans-serif;
 }
 
-.agentRole{
-  display:flex;
+.agentRole {
+  display: flex;
   justify-content: flex-start;
-  margin-top:2%;
+  margin-top: 2%;
   font-family: 'Valorant', sans-serif;
-  font-size:1rem;
+  font-size: 1rem;
 }
+
 .roleIcon {
   filter: invert(100%);
   height: 2.5rem;
-  width:auto;
-  margin-right:2rem;
+  width: auto;
+  margin-right: 2rem;
 }
-
 
 .agentBackstory {
-  margin:5%;
+  margin: 5%;
 }
 
-#agentBackstory {}
-
-
-
-
-/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* Header----------------------------------- */
 
 .header-container {
@@ -292,7 +271,6 @@ ul {
   font-size: 3rem;
 }
 
-
 .openbtn {
   font-size: 1.4rem;
   cursor: pointer;
@@ -311,7 +289,6 @@ ul {
   width: 100%;
 }
 
-
 .show {
   display: block;
 }
@@ -324,9 +301,9 @@ ul {
 
 @media only screen and (max-width: 931px) {
   .logo-nav {
-      width: 2.3rem;
-      margin-top: 15px;
-      margin-left: 5px;
+    width: 2.3rem;
+    margin-top: 15px;
+    margin-left: 5px;
   }
 
   .contact-nav,
@@ -334,11 +311,11 @@ ul {
   .agents-nav,
   .news-nav,
   .about-nav {
-      display: none;
+    display: none;
   }
 
   .openbtn {
-      padding: 0.9rem;
+    padding: 0.9rem;
   }
 }
 
@@ -407,11 +384,11 @@ ul {
 
 @media screen and (max-height: 450px) {
   .sidebar {
-      padding-top: 15px;
+    padding-top: 15px;
   }
 
   .sidebar a {
-      font-size: 18px;
+    font-size: 18px;
   }
 }
 
@@ -419,7 +396,7 @@ ul {
 /* Footer-------------------------------------------------------------- */
 
 .footer-container {
-  font-family:"Valorant", sans-serif;
+  font-family: "Valorant", sans-serif;
   background-color: #111;
   padding: 4rem 0 2rem 0;
   box-sizing: border-box;
@@ -450,7 +427,6 @@ ul {
   display: flex;
   margin-top: 2rem;
 }
-
 
 .footer-heading a {
   color: #fff;
@@ -510,34 +486,33 @@ ul {
 
 @media screen and (min-width: 1200px) {
   .footer {
-      height: 20vh;
+    height: 20vh;
   }
 }
 
 @media screen and (max-width: 1150px) {
   .footer {
-      height: 100%;
+    height: 100%;
   }
 
   .footer-email-form {
-      margin-top: 2rem;
+    margin-top: 2rem;
   }
 }
 
 @media screen and(max-width: 820px) {
   .footer {
-      padding-top: 2rem;
+    padding-top: 2rem;
   }
 }
 
 @media screen and(max-width: 720px) {
   .footer-email-form {
-      margin-top: 2rem;
+    margin-top: 2rem;
   }
 
-
   .footer-email-form {
-      margin-left: 2rem;
-      margin-right: 2rem
+    margin-left: 2rem;
+    margin-right: 2rem
   }
 }

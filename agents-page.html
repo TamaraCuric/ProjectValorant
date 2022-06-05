@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valorant</title>
+    <title>Agent Overview</title>
     <link href="http://fonts.cdnfonts.com/css/valorant" rel="stylesheet">
-    <link rel="stylesheet" href="agents-page.css">
+    <link rel="stylesheet" href="Styles/agents-page.css">
 </head>
 
 <body>
 
-    <!-- Header----------------------------------------------------- -->
+    <!-- Header -->
     <div class="header-container">
         <nav>
             <ul id="navList">
@@ -21,7 +21,6 @@
                         <img class="logo-nav" src="valorant_logo-freelogovectors.net_.png" />
                     </li>
                 </div>
-    
                 <div class="move-right-navs">
                     <li><a class="home-nav" href="/main.html">HOME</a></li>
                     <div class="dropdown">
@@ -32,14 +31,12 @@
                     </div>
                     <li>
                         <a class="news-nav" href="https://playvalorant.com/en-us/news/">NEWS</a>
-                        <!--leads to valorant news website page-->
                     </li>
                     <li><a class="about-nav" href="/about-us.html">ABOUT</a></li>
                     <li>
                         <a class="contact-nav" href="/contact-page.html">CONTACT US</a>
                     </li>
                     <li>
-                        <!--Sidebar button-->
                         <div id="sidebarButton">
                             <button class="openbtn" onclick="openSidebar()">&#9776;</button>
                         </div>
@@ -48,29 +45,20 @@
             </ul>
         </nav>
     </div>
+    <!-- Sidebar Header -->
     <div id="mySidebar" class="sidebar">
         <a href="#" class="closebtn" onclick="closeSidebar()">&times;</a>
         <div id="cardholder">
         </div>
-    
     </div>
 
-    <!------------------------------------------------------- -->
-
-
-
-
-
-
-
-
-
+    <!-- Agent name and picuture -->
     <div class="agentBackSplash">
-        <img class="stopHorizontalScroll" id='id1' src="placeholder lul.jpg">
+        <img class="stopHorizontalScroll" id='agentPicture' src="placeholder lul.jpg">
         <p class="agentNameScreen" id="agentNameTitleScreen"></p>
     </div>
 
-
+    <!-- Abilities -->
     <div class="abilities">
         <div class="abilityButtons">
             <button class="abilityButton">
@@ -98,7 +86,8 @@
             </div>
         </div>
     </div>
-
+    
+    <!-- Agent Description  -->
     <div class="agentDescription">
         <div class="agentNameTitle">
             <h1 id="agentName"></h1>
@@ -115,6 +104,7 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <div class="footer-container">
         <div class="footer">
             <div class="white-logo">
@@ -136,15 +126,8 @@
                 </span>
             </div>
         </div>
-
         <div class="signiture">@2022 All rigths reserved</div>
-
     </div>
-    
-
 </body>
-
-
-<script src="agents-page.js"></script>
-
+<script src="Src/agents-page.js"></script>
 </html>
