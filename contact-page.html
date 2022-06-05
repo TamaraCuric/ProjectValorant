@@ -8,11 +8,65 @@
     <title>Valorant Contact Us</title>
     <link href="http://fonts.cdnfonts.com/css/valorant" rel="stylesheet">
     <link rel="stylesheet" href="contact-page.css">
+    <script defer src="contact-page.js"></script>
+
 </head>
 
 <body>
     <!-- Input form with background -->
     <div class="home-background-image">
+
+
+    <!-- Header----------------------------------------------------- -->
+    <div class="header-container">
+        <nav>
+            <ul id="navList">
+                <div class="move-left-logo">
+                    <li>
+                        <img class="logo-nav" src="valorant_logo-freelogovectors.net_.png" />
+                    </li>
+                </div>
+    
+                <div class="move-right-navs">
+                    <li><a class="home-nav" href="/main.html">HOME</a></li>
+                    <div class="dropdown">
+                        <li>
+                            <a onmouseover="agentsDropFunc()" class="agents-nav dropbtn" href="/agents-list.html">AGENTS</a>
+                        </li>
+                        <div id="agentsDrop" class="dropdown-content"></div>
+                    </div>
+                    <li>
+                        <a class="news-nav" href="https://playvalorant.com/en-us/news/">NEWS</a>
+                        <!--leads to valorant news website page-->
+                    </li>
+                    <li><a class="about-nav" href="/about-us.html">ABOUT</a></li>
+                    <li>
+                        <a class="contact-nav" href="/contact-page.html">CONTACT US</a>
+                    </li>
+                    <li>
+                        <!--Sidebar button-->
+                        <div id="sidebarButton">
+                            <button class="openbtn" onclick="openSidebar()">&#9776;</button>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+    </div>
+    <div id="mySidebar" class="sidebar">
+        <a href="#" class="closebtn" onclick="closeSidebar()">&times;</a>
+        <div id="cardholder">
+        </div>
+    
+    </div>
+
+    <!------------------------------------------------------- -->
+
+
+
+
+
+
         <!-- Form and its wrapper -->
         <div class="container">
             <form action="#">
@@ -281,6 +335,32 @@
 
             </form>
         </div>
+    </div>
+
+    <div class="footer-container">
+        <div class="footer">
+            <div class="white-logo">
+                <img src="whiteValLogo.png">
+            </div>
+            <div class="footer-heading">
+                <a href="/main.html" target="_blank">HOME</a>
+                <a href="/agents-list.html" target="_blank">AGENTS</a>
+                <a href="/about-us.html" target="_blank">ABOUT</a>
+                <a href="/contact-page.html" target="_blank">CONTACT</a>
+            </div>
+
+            <div class="footer-email-form">
+                <div class="newsletterJoin">Join our newsletter</div>
+                <input type="email" placeholder="Enter your email address" id="footer-email">
+                <span id="footer-email-btn">
+                    <button type="submit" value="Submit" id="footer-email-btn">
+                        <span class="fa">Submit</span></button>
+                </span>
+            </div>
+        </div>
+
+        <div class="signiture">@2022 All rigths reserved</div>
+
     </div>
 
 </body>

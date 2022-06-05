@@ -3,8 +3,16 @@ var mq = window.matchMedia("(max-width: 1100px)")
 var searchBtn = document.getElementById('search-btn');
 var foundAgents = []
 var currentPage = 1
+
+const mediaQuery = window.matchMedia("(max-width: 931px)");
+var navLinks = document.querySelectorAll(".move-right-navs a");
+var dropdowns = document.getElementsByClassName("dropdown-content");
+var cardholder = document.getElementById("cardholder");
+
+
 fetchAgentsJSON().then(agents => {
     agents = removeDuplicateSova(agents)
+    populateDropdownMenu(agents);
     foundAgents = agents;
     sortAgentsByAlphabet(agents)
     searchBtn.onclick = function() {
@@ -19,6 +27,88 @@ fetchAgentsJSON().then(agents => {
     createCards(agents);
     createPager(agents.length)
 });
+
+activateNavLink();
+window.onmouseover = function (event) {
+    if (
+      !event.target.matches(".dropbtn") &&
+      !event.target.matches(".dropdown-content") &&
+      !event.target.matches(".dropdown-content a")
+    ) {
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains("show")) {
+          openDropdown.classList.remove("show");
+        }
+      }
+    }
+};
+
+if(mediaQuery.matches) {
+    navLinks.forEach(link => {
+        let anchor = document.createElement("a");
+        anchor.innerHTML = link.innerHTML;
+        anchor.href = link.href;
+        cardholder.appendChild(anchor);
+    })
+}
+function populateDropdownMenu(agents) {
+    agents.forEach((agent) => {
+      const dropdown = document.getElementById("agentsDrop");
+      let anchor = document.createElement("a");
+      anchor.innerHTML = agent.displayName;
+      anchor.href = "/agents-page.html?agentName=" + agent.displayName.toLowerCase();
+      dropdown.appendChild(anchor); 
+    });
+}
+
+function activateNavLink() {
+    const activePage = window.location.pathname;
+    document.querySelectorAll("#navList li a").forEach((link) => {
+      if (link.href.includes(activePage)) {
+        link.classList.add("active");
+      }
+    });
+}
+
+function agentsDropFunc() {
+    document.getElementById("agentsDrop").classList.toggle("show");
+}
+
+function openSidebar() {
+    document.getElementById("mySidebar").style.width = "40vw";
+}
+
+function closeSidebar() {
+  document.getElementById("mySidebar").style.width = "0";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function sortAgentsByAlphabet(agents){
     agents.sort((a, b) => a.displayName.localeCompare(b.displayName))
@@ -62,6 +152,7 @@ function getSearchWord(){
     return inputs.value
 
 }
+
 function getActiveSearchParams(){
     var inputs = document.getElementsByTagName("input");
     var idsOfChecked = []
@@ -121,6 +212,7 @@ function createPager(agentCount){
         let anchor = document.createElement("a");
         anchor.innerHTML = i;
         anchor.classList.add("pager-link")
+        if(i==1) anchor.classList.add("active")
         anchor.onclick = function(){
             currentPage = i;
             deleteCards();
