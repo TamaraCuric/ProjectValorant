@@ -1,5 +1,5 @@
 @font-face {
-    src: url(665-font.otf);
+    src: url("/Resources/665-font.otf");
     font-family: DINNextW1G;
 }
 
@@ -241,7 +241,7 @@ ul {
 /* Background----------------------------------------------------------- */
 
 .background {
-    background-image: url('valorantCover.jpg');
+    background-image: url('/Resources/valorantCover.jpg');
     position: relative;
     top: 0;
     background-attachment: fixed;
