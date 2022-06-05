@@ -11,6 +11,7 @@ const carouselWidth = carousel.offsetWidth;
 const cardStyle = card.currentStyle || window.getComputedStyle(card);
 const cardMarginRight = Number(cardStyle.marginRight.match(/\d+/g)[0]);
 const mediaQuerySlider = window.matchMedia("(max-width: 920px)");
+const mediaQuery420 = window.matchMedia("(max-width: 420px)");
 
 
 
@@ -386,8 +387,14 @@ function makeTierCards(tiers) {
     tiers.forEach(tier => {
         var tierClone = tierCard.cloneNode(true);
         tierClone.getElementsByClassName("tier-name")[0].innerHTML = tier.tierName;
-        tierClone.style.cssText = "flex: 30%;position: relative;background-image: url("+
-        tier.largeIcon + ");background-color: #dc3d4b;height: 30vh;background-repeat: no-repeat;background-size: 14rem;background-position-y: 1vh;background-position-x: center;border: 3px solid #111;outline: solid 3px #111;outline-offset: -12px;margin: 0.8rem;"
+        
+        if(mediaQuery420.matches){
+            tierClone.style.cssText = "flex: 30%;position: relative;background-image: url("+
+            tier.largeIcon + ");background-color: #dc3d4b;height: 30vh;background-repeat: no-repeat;background-size: 8rem;background-position-y: 2vh;background-position-x: center;border: 3px solid #111;outline: solid 3px #111;outline-offset: -12px;margin: 0.8rem;"
+        } else {
+            tierClone.style.cssText = "flex: 30%;position: relative;background-image: url("+
+            tier.largeIcon + ");background-color: #dc3d4b;height: 30vh;background-repeat: no-repeat;background-size: 14rem;background-position-y: 1vh;background-position-x: center;border: 3px solid #111;outline: solid 3px #111;outline-offset: -12px;margin: 0.8rem;"
+        }
         tierCard.after(tierClone);
     })
     let firstRankCard = document.getElementsByClassName("tier-card")[0];

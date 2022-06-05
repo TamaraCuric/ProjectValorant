@@ -324,8 +324,23 @@ ul {
     left: 43vw;
 }
 
+@media screen and (max-width:920px) {
+    .slidebarTitile {
+        font-size: 12vw;
+        padding: 5vw;
+        margin-top: 4.5vh;
+    }
 
-/* Cards for slider----------------------------------------- */
+    .carouselContainer {
+        height: 58vh;
+        width: 92vw;
+        margin: 0 auto;
+        margin-top: 6vh;
+    }
+}
+
+
+/* Cards for slider-------------------- */
 
 #slide0 {
     background-image: linear-gradient(to bottom, transparent, #211E27), url('https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/bustportrait.png');
@@ -339,17 +354,12 @@ ul {
     min-width: 30vw;
     height: 58vh;
     background-color: #211E27;
-    /* #364966 */
     background-repeat: no-repeat;
     background-size: 40vw;
     background-position: center;
     border: 4px solid #dc3d4b;
 }
 
-
-.card:hover {
-    transition: .1s ease-in;
-}
 
 .card__title {
     font-family: 'Valorant';
@@ -394,6 +404,55 @@ ul {
 
 .morebtn:hover {
     box-shadow: inset 11vw 0 0 0 #dc3d4b;
+}
+
+@media screen and (min-width: 1520px) {
+    .card {
+        background-position: top;
+    }
+}
+
+@media screen and (max-width:920px){
+    .card {
+        width: 92vw;
+        min-width: 92vw;
+        height: 58vh;
+        margin-right: 2vw;
+        background-size: 80vw;
+        border: 0.8rem solid #dc3d4b;
+    }
+
+    .card__title {
+        padding: 2rem;
+        font-size: 9vw;
+    }
+
+    .card__thumbnail>.card__title {
+        bottom: 10vw;
+    }
+
+    .morebtn {
+        padding: 2vw;
+        bottom: 3.5vw;
+        font-size: 4vw;
+        border-width: 1px;
+    }
+
+    .slideLeft {
+        font-size: 12vw;
+        right: 41vw;
+    }
+
+    .slideRight {
+        font-size: 12vw;
+        left: 41vw;
+    }
+}
+
+@media screen and (min-height: 600px) and (max-height: 800px) {
+    .card {
+        background-position: top;
+    }
 }
 
 /* Modal window for slider--------------------------------------- */
@@ -452,9 +511,125 @@ ul {
     cursor: pointer;
 }
 
+@media screen and (max-width: 920px) {
+    .modal-title {
+        top: 70vh;
+        font-size: 10vw;
+    }
+
+    .modal-role img {
+        max-width: 8vw;
+        top: 58vh;
+    }
+
+    .abbilities img {
+        margin-top: 69vh;
+    } 
+}
+
+/* Top tiers--------------------------------------------------------- */
+
+.sorted-tiers {
+    min-height: 100vh;
+    position: relative;
+    background-color: #211E27;
+    top: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+.sorted-title {
+    font-family: 'Valorant';
+    font-size: 3.5rem;
+    color: #f1f1f1;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 5vh;
+    text-shadow: -0.5em 0.15em 0.05em #111;
+}
+
+.tiers-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 1vw 6vw 1vw;
+    margin: 2rem 1rem 2rem 1rem;
+    justify-content: space-around;
+    overflow: hidden;
+}
+
+.tier-card {
+    flex: 30%;
+    position: relative;
+    background-image: url("https://media.valorant-api.com/competitivetiers/564d8e28-c226-3180-6285-e48a390db8b1/24/largeicon.png");
+    background-color: #dc3d4b;
+    height: 30vh;
+    background-repeat: no-repeat;
+    background-size: 14rem;
+    background-position-y: 1vh;
+    background-position-x: center;
+    border: 3px solid #111;
+    outline: solid 3px #111;
+    outline-offset: -12px;
+    margin: 0.8rem;
+}
+
+.tier-name {
+    font-family: 'Valorant';
+    font-size: 1.5rem;
+    color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    margin-top: 15rem;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+#loadMore{
+    font-family: 'Valorant';
+    font-size: 2vw;
+    padding: 0.5rem;
+    position: absolute;
+    bottom: 2rem;
+    left: 42vw;
+    background-color: #f1f1f1;
+    color: #111;
+    border: 3px solid #111;
+    box-shadow: inset 0 0 0 0 #111;
+    transition: ease-out 0.3s;
+}
+#loadMore:hover{
+    box-shadow: inset 16vw 0 0 0 #111;
+    cursor: pointer;
+    color: #f1f1f1;
+}
+
+@media screen and (max-width:920px) {
+    .tier-card {
+        flex: 100% !important;
+    }
+}
+
+@media screen and (max-width: 420px){
+    .tier-card {
+        background-size: 8rem;
+        background-position-y: 2vh;
+    }
+    
+    .tier-name {
+        margin-top: 22vh;
+    }
+}
+
 /* Modal window for sidemenu--------------------------------------------- */
 
-.modal-sidemenu {
+/* .modal-sidemenu {
     display: none;
     position: fixed;
     z-index: 100;
@@ -524,93 +699,9 @@ ul {
 
 #modalClose {
     color: #444;
-}
-
-/* Sorted tiers--------------------------------------------------------- */
-
-.sorted-tiers {
-    min-height: 100vh;
-    position: relative;
-    background-color: #211E27;
-    top: 0;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 100%;
-    overflow: hidden;
-}
-
-.sorted-title {
-    font-family: 'Valorant';
-    font-size: 3.5rem;
-    color: #f1f1f1;
-    text-align: center;
-    padding: 2rem;
-    margin-top: 5vh;
-    text-shadow: -0.5em 0.15em 0.05em #111;
-}
-
-.tiers-card-container {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 1vw 6vw 1vw;
-    margin: 2rem 1rem 2rem 1rem;
-    justify-content: space-around;
-    overflow: hidden;
-    /* flex: 30%;
-    max-width: 30%;
-    padding: 0 4px; */
-}
-
-.tier-card {
-    flex: 30%;
-    position: relative;
-    background-image: url("https://media.valorant-api.com/competitivetiers/564d8e28-c226-3180-6285-e48a390db8b1/24/largeicon.png");
-    background-color: #dc3d4b;
-    height: 30vh;
-    background-repeat: no-repeat;
-    background-size: 14rem;
-    background-position-y: 1vh;
-    background-position-x: center;
-    border: 3px solid #111;
-    outline: solid 3px #111;
-    outline-offset: -12px;
-    margin: 0.8rem;
-}
-
-.tier-name {
-    font-family: 'Valorant';
-    font-size: 1.5rem;
-    color: #f1f1f1;
-    display: flex;
-    justify-content: center;
-    margin-top: 15rem;
-}
-
-.hidden {
-    display: none;
-}
+} */
 
 
-
-#loadMore{
-    font-family: 'Valorant';
-    font-size: 2vw;
-    padding: 0.5rem;
-    position: absolute;
-    bottom: 2rem;
-    left: 42vw;
-    background-color: #f1f1f1;
-    color: #111;
-    border: 3px solid #111;
-    box-shadow: inset 0 0 0 0 #111;
-    transition: ease-out 0.3s;
-}
-#loadMore:hover{
-    box-shadow: inset 16vw 0 0 0 #111;
-    cursor: pointer;
-    color: #f1f1f1;
-}
 
 
 /* Footer-------------------------------------------------------------- */
@@ -744,83 +835,11 @@ ul {
 
 
 
-@media screen and (min-width: 1520px) {
-    .card {
-        background-position: top;
-    }
-}
 
-@media screen and (min-height: 600px) and (max-height: 800px) {
-    .card {
-        background-position: top;
-    }
-}
 
-@media screen and (max-width: 920px) {
-    .modal-title {
-        top: 70vh;
-        font-size: 10vw;
-    }
 
-    .modal-role img {
-        max-width: 8vw;
-        top: 58vh;
-    }
 
-    .abbilities img {
-        margin-top: 69vh;
-    }
-
-    .card {
-        width: 92vw;
-        min-width: 92vw;
-        height: 58vh;
-        margin-right: 2vw;
-        background-size: 80vw;
-        border: 0.8rem solid #dc3d4b;
-    }
-
-    .card__title {
-        padding: 2rem;
-        font-size: 9vw;
-    }
-
-    .card__thumbnail>.card__title {
-        bottom: 10vw;
-    }
-
-    .morebtn {
-        padding: 2vw;
-        bottom: 3.5vw;
-        font-size: 4vw;
-        border-width: 1px;
-    }
-
-    .slideLeft {
-        font-size: 12vw;
-        right: 41vw;
-    }
-
-    .slideRight {
-        font-size: 12vw;
-        left: 41vw;
-    }
-
-    .slidebarTitile {
-        font-size: 12vw;
-        padding: 5vw;
-        margin-top: 4.5vh;
-    }
-
-    .carouselContainer {
-        height: 58vh;
-        width: 92vw;
-        margin: 0 auto;
-        margin-top: 6vh;
-    }
-}
-
-@media screen and (min-width: 915px) and (max-width: 1200px) {
+/* @media screen and (min-width: 915px) and (max-width: 1200px) {
     .modal-weapon-title {
         top: 40.5vh;
     }
@@ -838,9 +857,9 @@ ul {
         height: 51vh;
         margin-top: 34.5vh;
     }
-}
+} */
 
-@media screen and (min-width: 1200px) {
+/* @media screen and (min-width: 1200px) { */
 
     /* .sidemenu-card {
         height: 30vh;
@@ -864,7 +883,7 @@ ul {
         top: 6rem;
     } */
 
-    .modal-content-sidemenu {
+    /* .modal-content-sidemenu {
         margin: 4.5vh auto;
     }
 
@@ -884,11 +903,11 @@ ul {
     .modal-weapon-price-container {
         margin-right: 2vw;
         margin-top: 34.5vh;
-    }
+    } */
 
-}
+/* } */
 
-@media screen and (max-width: 915px) {
+/* @media screen and (max-width: 915px) { */
     /* .sidemenu-card img {
         bottom: 16vh;
     }
@@ -907,7 +926,7 @@ ul {
         font-size: 3vw;
     } */
 
-    .modal-content-sidemenu {
+    /* .modal-content-sidemenu {
         margin: 5.5vh auto 5.5vh auto;
     }
 
@@ -933,9 +952,9 @@ ul {
     .modal-weapon-price {
         font-size: 6vw;
         top: 20rem;
-    }
+    } */
 
-}
+/* } */
 
 
 @media screen and (max-width: 415px) {
@@ -1006,7 +1025,7 @@ ul {
         top: 5rem;
     } */
 
-    .modal-content-sidemenu {
+    /* .modal-content-sidemenu {
         background-size: 80vw;
         height: 60vh;
         margin: 20vh auto 20vh auto;
@@ -1039,14 +1058,10 @@ ul {
     #modalClose {
         top: 20.5vh;
         font-size: 6vw;
-    }
+    } */
 }
 
-@media screen and (max-width:920px) {
-    .tier-card {
-        flex: 100% !important;
-    }
-}
+
 
 /* .sidemenu-container {
     display: flex;
