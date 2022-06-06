@@ -79,6 +79,7 @@ body {
     position: absolute;
     right: 20%;
     top: 10%;
+    max-width: 100%;
 }
 
 .agent-picture {
