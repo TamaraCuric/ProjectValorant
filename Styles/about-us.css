@@ -1,4 +1,17 @@
-@font-face {font-family: "Tungsten Bold"; src: url("//db.onlinewebfonts.com/t/561f38b1f4570de0fb8a39d691ab058c.eot"); src: url("//db.onlinewebfonts.com/t/561f38b1f4570de0fb8a39d691ab058c.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/561f38b1f4570de0fb8a39d691ab058c.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/561f38b1f4570de0fb8a39d691ab058c.woff") format("woff"), url("//db.onlinewebfonts.com/t/561f38b1f4570de0fb8a39d691ab058c.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/561f38b1f4570de0fb8a39d691ab058c.svg#Tungsten Bold") format("svg"); }
+
+@font-face {
+    font-family: 'VALORANT';
+    font-style: normal;
+    font-weight: 400;
+    src: local('VALORANT'), url('/Resources/Valorant Font.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Tungsten';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/Resources/Tungsten-Bold.woff');
+}
 
 * {
     margin: 0;
@@ -11,7 +24,7 @@ html {
     height: 100%;
     scroll-behavior: smooth;
     overflow-x: hidden;
-    font-family: 'Tungsten Bold', sans-serif;
+    font-family:"Tungsten", sans-serif;
 }
 
 body {

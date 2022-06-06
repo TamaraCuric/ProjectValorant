@@ -105,12 +105,8 @@ async function fetchTiersJSON() {
 }
 
 function activateNavLink() {
-  const activePage = window.location.pathname;
-  document.querySelectorAll("#navList li a").forEach((link) => {
-    if (link.href.includes(activePage)) {
-      link.classList.add("active");
-    }
-  });
+  let link = document.getElementById("index-link");
+  link.classList.add('active')
 }
 
 function populateDropdownMenu(agents) {

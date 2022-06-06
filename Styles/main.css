@@ -3,6 +3,13 @@
     font-family: DINNextW1G;
 }
 
+@font-face {
+    font-family: 'VALORANT';
+    font-style: normal;
+    font-weight: 400;
+    src: local('VALORANT'), url('/Resources/Valorant Font.woff') format('woff');
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -99,7 +106,7 @@ ul {
     z-index: 100;
     top: 100%;
     max-height: 50vh;
-    overflow- y: scroll;
+    overflow-y: scroll;
     overflow-x: hidden;
 }
 
@@ -635,6 +642,7 @@ ul {
     background-color: #111;
     padding: 4rem 0 2rem 0;
     box-sizing: border-box;
+    font-family: 'Valorant', sans-serif;
 }
 
 .footer {
