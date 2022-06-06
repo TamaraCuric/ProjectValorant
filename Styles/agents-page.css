@@ -5,6 +5,14 @@
   src: local('VALORANT'), url('/Resources/Valorant Font.woff') format('woff');
 }
 
+
+@font-face {
+  font-family: 'Tungsten';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/Resources/Tungsten-Bold.woff');
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +21,7 @@
 
 body,
 html {
-  font-family: quicksand;
+  font-family: 'Tungsten', sans-serif;
   height: 100%;
   scroll-behavior: smooth;
   overflow-x: hidden;
@@ -141,7 +149,7 @@ body {
 #abilityDescription {
   padding: 10% 5%;
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.8rem;
   text-align: justify;
 
   margin-left: 10%;
@@ -165,7 +173,7 @@ body {
   margin-top: 3%;
   margin-left: 10%;
   margin-right: 10%;
-
+  font-size: 1.8rem;
 }
 
 .agentNameTitle {
